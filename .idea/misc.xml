@@ -5,7 +5,8 @@
       <map>
         <entry key="app/src/main/res/layout/activity_join.xml" value="0.165" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.209375" />
-        <entry key="app/src/main/res/layout/activity_search.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_search.xml" value="0.2535410764872521" />
+        <entry key="app/src/main/res/layout/pager_item.xml" value="0.18645833333333334" />
       </map>
     </option>
   </component>
