@@ -32,6 +32,10 @@ android {
         jvmTarget = '1.8'
     }
 
+    viewBinding {
+        enabled = true
+    }
+    
     dataBinding {
         //noinspection DataBindingWithoutKapt
         enabled = true

@@ -1,15 +1,14 @@
 package com.bookting.view
 
 
-import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
+
 import com.bookting.R
+import com.bookting.databinding.ActivityJoinBinding
 
-class JoinActivity: AppCompatActivity() {
+class JoinActivity: BaseActivity<ActivityJoinBinding>(R.layout.activity_join) {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_join)
+    override fun initView() {
+        //TODO("Not yet implemented")
     }
 
 }

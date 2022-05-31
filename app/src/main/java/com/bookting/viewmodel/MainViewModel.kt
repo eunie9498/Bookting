@@ -11,4 +11,5 @@ class MainViewModel : ViewModel() {
     fun getPw(email: String, pw: String) {
         user.value = Users(email, pw)
     }
+
 }

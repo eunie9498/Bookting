@@ -2,14 +2,14 @@ package com.bookting.view
 
 import android.os.Bundle
 import androidx.annotation.LayoutRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import com.bookting.main.MainActivity
 import io.reactivex.disposables.CompositeDisposable
 
 abstract class BaseActivity<T : ViewDataBinding>(
     @LayoutRes val layoutId: Int
-) : AppCompatActivity() {
+) : MainActivity() {
 
     lateinit var binding: T
     private val compositeDisposable = CompositeDisposable()
@@ -25,7 +25,6 @@ abstract class BaseActivity<T : ViewDataBinding>(
         super.onDestroy()
         compositeDisposable.clear()
     }
-
 
     abstract fun initView()
 
