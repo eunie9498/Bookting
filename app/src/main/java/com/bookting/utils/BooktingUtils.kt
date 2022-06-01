@@ -1,0 +1,36 @@
+package com.bookting.utils
+
+import android.app.Activity
+import android.content.Context
+import android.graphics.Color
+import android.os.Build
+import android.util.TypedValue
+import android.view.View
+import android.view.WindowInsets
+import android.view.WindowInsetsController
+import android.view.WindowManager
+
+fun Float.dpToPx(context: Context): Float {
+    return TypedValue.applyDimension(
+        TypedValue.COMPLEX_UNIT_DIP,
+        this,
+        context.resources.displayMetrics
+    )
+}
+
+fun Activity.setStatusTrans() {
+    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.R) {
+        window.apply {
+            decorView.systemUiVisibility =
+                View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+            addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+            statusBarColor = Color.TRANSPARENT
+        }
+    } else {
+        val controller = window.insetsController
+        controller?.hide(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
+        controller?.systemBarsBehavior =
+            WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        window.setDecorFitsSystemWindows(false)
+    }
+}
