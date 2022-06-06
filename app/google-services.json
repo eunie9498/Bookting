@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "327864462261",
+    "project_id": "bookting-f9937",
+    "storage_bucket": "bookting-f9937.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:327864462261:android:0ba03d85166e65164e87fc",
+        "android_client_info": {
+          "package_name": "com.bookting"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "327864462261-66i0dt449a53rra7kh9rmenv1f61sqph.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCFEmehMn8ckB1aCgBFQ9b7FJTsUgH_8nw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "327864462261-66i0dt449a53rra7kh9rmenv1f61sqph.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
