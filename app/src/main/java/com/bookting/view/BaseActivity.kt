@@ -1,11 +1,15 @@
 package com.bookting.view
 
 import android.os.Bundle
+import android.util.Log
 import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.bookting.main.MainActivity
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.firebase.messaging.FirebaseMessaging
 import io.reactivex.disposables.CompositeDisposable
+
 
 abstract class BaseActivity<T : ViewDataBinding>(
     @LayoutRes val layoutId: Int
@@ -24,6 +28,18 @@ abstract class BaseActivity<T : ViewDataBinding>(
     override fun onDestroy() {
         super.onDestroy()
         compositeDisposable.clear()
+    }
+
+    fun getFbToken() {
+        FirebaseMessaging.getInstance().token.addOnCompleteListener(OnCompleteListener { task ->
+            if (!task.isSuccessful) {
+                Log.e("FCM ERR", task.exception.toString())
+                return@OnCompleteListener
+            }
+            val token = task.result
+            //todo token save
+        }
+        )
     }
 
     abstract fun initView()
