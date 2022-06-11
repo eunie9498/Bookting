@@ -1,7 +1,7 @@
 package com.bookting.di
 
 import com.bookting.api.BookAPI
-import com.bookting.models.MainConstants
+import com.bookting.data.MainConstants
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit

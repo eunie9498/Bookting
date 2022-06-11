@@ -11,8 +11,6 @@ import javax.inject.Inject
 
 open class MainActivity : AppCompatActivity(){
 
-    @Inject
-    lateinit var api: BookAPI
 
     lateinit var component: BookComponent
 

@@ -27,6 +27,7 @@ abstract class BaseFragment<T : ViewDataBinding>(
         super.onViewCreated(view, savedInstanceState)
         binding.lifecycleOwner = this
         init()
+
     }
 
     abstract fun init()
