@@ -1,9 +1,8 @@
 package com.bookting.viewmodel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.bookting.models.Users
+import com.bookting.data.Users
 
 class MainViewModel : ViewModel() {
     val user = MutableLiveData<Users>()

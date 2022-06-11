@@ -1,4 +1,4 @@
-package com.bookting.models
+package com.bookting.data
 
 object MainConstants {
     val SECRET_ID = "siNoP2_H8y9_GgdbVznc"

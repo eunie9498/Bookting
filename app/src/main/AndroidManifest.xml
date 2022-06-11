@@ -23,7 +23,7 @@
             android:name=".view.SearchActivity"
             android:exported="false" />
         <activity
-            android:name=".view.JoinActivity"
+            android:name=".view.start.JoinActivity"
             android:exported="false" />
 
         <service
