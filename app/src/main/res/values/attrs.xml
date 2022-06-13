@@ -5,4 +5,8 @@
     <declare-styleable name="InputTxt">
 
     </declare-styleable>
+
+    <declare-styleable name="AppBarCenter">
+        <attr name="setTxt"/>
+    </declare-styleable>
 </resources>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Normal22">
+        <item name="android:textSize">22dp</item>
+        <item name="android:textColor">@color/grey800</item>
+    </style>
+
+    <style name="Normal18">
+        <item name="android:textSize">18dp</item>
+        <item name="android:textColor">@color/grey800</item>
+    </style>
+</resources>
