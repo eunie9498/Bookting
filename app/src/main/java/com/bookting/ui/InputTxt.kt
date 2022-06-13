@@ -32,4 +32,9 @@ class InputTxt constructor(
         binding.tvInput.background = ContextCompat.getDrawable(binding.root.context, bg)
     }
 
+    fun setErr(err: String) {
+        binding.tvInput.background = ContextCompat.getDrawable(binding.root.context, R.drawable.line_radius10_red800)
+        binding.inputLayout.helperText = err
+    }
+
 }
