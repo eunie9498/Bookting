@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Bookting</string>
+
+    <string name="id">아이디</string>
+    <string name="pw">비밀번호</string>
+    <string name="join">회원가입</string>
 </resources>
