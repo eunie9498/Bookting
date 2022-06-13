@@ -19,11 +19,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BaseActivity"
-            android:exported="false"/>
+
         <activity
             android:name=".view.start.JoinActivity"
             android:exported="false" />
+
+        <activity android:name=".main.NetworkActivity"
+            android:exported="false"/>
 
         <service
             android:name=".FbMessaging"
