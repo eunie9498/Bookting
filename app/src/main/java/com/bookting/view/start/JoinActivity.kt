@@ -10,7 +10,7 @@ class JoinActivity : BaseActivity<ActivityJoinBinding>(R.layout.activity_join) {
 
     override fun ActivityJoinBinding.onCreate() {
         act = this@JoinActivity
-        
+
         idField.apply {
             setHtColor(R.color.purple400)
             setHt(root.context.getString(R.string.id))
