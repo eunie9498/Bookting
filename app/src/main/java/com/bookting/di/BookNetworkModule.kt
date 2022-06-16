@@ -1,7 +1,10 @@
 package com.bookting.di
 
+import android.app.Application
+import android.content.Context
+import android.content.SharedPreferences
+import androidx.preference.PreferenceManager
 import com.bookting.api.BookAPI
-import com.bookting.data.BooktingData
 import com.bookting.data.MainConstants
 import com.bookting.data.SharedHelper
 import dagger.Module
@@ -12,7 +15,8 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
-abstract class BookNetworkModule {
+class BookNetworkModule {
+    var context = Application().applicationContext
     @Provides
     @Singleton
     fun provideAPI(): BookAPI {
@@ -24,8 +28,9 @@ abstract class BookNetworkModule {
     }
 
     @Provides
-    abstract fun provideBookData(): BooktingData
+    @Singleton
+    fun provideSharedPreferences(): SharedHelper{
+        return SharedHelper(context)
+    }
 
-    @Provides
-    abstract fun getHelper(): SharedHelper
 }

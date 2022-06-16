@@ -10,8 +10,6 @@ import com.bookting.main.NetworkActivity
 open class BaseActivity<T : ViewDataBinding>(@LayoutRes val layoutRes: Int) : NetworkActivity() {
 
     lateinit var binding: T
-    var sharedData = data
-    var sharedHelper = SharedHelper
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -19,8 +17,6 @@ open class BaseActivity<T : ViewDataBinding>(@LayoutRes val layoutRes: Int) : Ne
 
         binding = DataBindingUtil.setContentView(this, layoutRes)
         binding.onCreate()
-
-        sharedHelper.init(this)
     }
 
     open fun T.onCreate() = Unit

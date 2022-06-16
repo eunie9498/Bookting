@@ -1,21 +1,15 @@
 package com.bookting.data
 
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 
-object SharedHelper {
-    private const val PREF_MODE = Context.MODE_PRIVATE
-    private lateinit var sharedPreferences: SharedPreferences
+class SharedHelper(context: Context) {
 
-    fun init(context: Context) {
-        sharedPreferences = context.getSharedPreferences(MainConstants.SHARED, PREF_MODE)
-    }
+    var sharedPreferences: SharedPreferences =
+        context.getSharedPreferences(MainConstants.SHARED, Context.MODE_PRIVATE)
 
-    fun getSharedPreferences(): SharedPreferences {
-        return sharedPreferences
-    }
-
-    fun addShared(key: String, value: Any?) {
+    fun addPreference(key: String, value: Any?) {
         sharedPreferences.edit().apply {
             when (value) {
                 is Int -> putInt(key, value).apply()
@@ -27,4 +21,7 @@ object SharedHelper {
             }
         }
     }
+
+    val getToken: String
+        get() = sharedPreferences.getString(MainConstants.Shared.TOKEN, "") ?: ""
 }
