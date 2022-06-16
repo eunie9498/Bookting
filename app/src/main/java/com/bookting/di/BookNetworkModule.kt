@@ -1,7 +1,9 @@
 package com.bookting.di
 
 import com.bookting.api.BookAPI
+import com.bookting.data.BooktingData
 import com.bookting.data.MainConstants
+import com.bookting.data.SharedHelper
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit
@@ -10,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
-class BookNetworkModule {
+abstract class BookNetworkModule {
     @Provides
     @Singleton
     fun provideAPI(): BookAPI {
@@ -20,4 +22,10 @@ class BookNetworkModule {
             .build()
             .create(BookAPI::class.java)
     }
+
+    @Provides
+    abstract fun provideBookData(): BooktingData
+
+    @Provides
+    abstract fun getHelper(): SharedHelper
 }
