@@ -3,9 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="email"
             type="String" />
+
+        <variable
+            name="act"
+            type="com.bookting.view.start.JoinActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -25,6 +30,8 @@
             android:id="@+id/idField"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_marginTop="60dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -34,6 +41,8 @@
         <com.bookting.ui.InputTxt
             android:id="@+id/pwField"
             android:layout_width="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -43,12 +52,25 @@
         <com.bookting.ui.InputTxt
             android:id="@+id/nickField"
             android:layout_width="0dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="20dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/pwField" />
 
+        <TextView
+            android:id="@+id/btnJoin"
+            style="@style/ButtonRadius10"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/btn_radius20_blue"
+            android:onClick="@{(v)->act.join()}"
+            android:text="@string/join"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/nickField" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
