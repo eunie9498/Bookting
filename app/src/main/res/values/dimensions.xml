@@ -2,4 +2,5 @@
 <resources>
     <dimen name="appBarTop">10dp</dimen>
     <dimen name="defaultMarginStart">16dp</dimen>
+    <dimen name="normalBtnHeight">48dp</dimen>
 </resources>

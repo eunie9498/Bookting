@@ -28,13 +28,17 @@ class InputTxt constructor(
         binding.inputLayout.hint = hint
     }
 
-    fun setBg(bg: Int) {
-        binding.tvInput.background = ContextCompat.getDrawable(binding.root.context, bg)
+    fun setHtColor(color: Int) {
+        binding.tvInput.setHintTextColor(ContextCompat.getColor(binding.root.context, color))
     }
 
+    fun setTxtColor(color: Int) {
+        binding.tvInput.setTextColor(ContextCompat.getColor(binding.root.context, color))
+    }
+
+
     fun setErr(err: String) = with(binding) {
-        tvInput.background =
-            ContextCompat.getDrawable(binding.root.context, R.drawable.line_radius10_red800)
+        inputLayout.boxStrokeColor = ContextCompat.getColor(binding.root.context, R.color.red800)
         inputLayout.helperText = err
         inputLayout.setHelperTextColor(
             ContextCompat.getColorStateList(

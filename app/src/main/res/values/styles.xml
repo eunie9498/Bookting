@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
     <style name="Normal22">
         <item name="android:textSize">22dp</item>
         <item name="android:textColor">@color/grey800</item>
@@ -8,5 +9,15 @@
     <style name="Normal18">
         <item name="android:textSize">18dp</item>
         <item name="android:textColor">@color/grey800</item>
+    </style>
+
+    <style name="ButtonRadius10">
+        <item name="android:textSize">13dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:radius">10dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginStart">@dimen/defaultMarginStart</item>
+        <item name="android:layout_marginEnd">@dimen/defaultMarginStart</item>
     </style>
 </resources>
