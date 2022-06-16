@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.bookting.api.BookAPI
 import com.bookting.data.SharedHelper
 import com.bookting.di.BookComponent
+import com.bookting.di.BookNetworkModule
 import com.bookting.di.DaggerBookComponent
 import javax.inject.Inject
 
@@ -20,7 +21,9 @@ open class NetworkActivity: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        component = DaggerBookComponent.builder().build()
+        component =  DaggerBookComponent.builder()
+            .bookNetworkModule(BookNetworkModule(this))
+            .build()
         component.inject(this)
     }
 

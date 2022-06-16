@@ -15,8 +15,11 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
-class BookNetworkModule {
-    var context = Application().applicationContext
+class BookNetworkModule(val context: Context) {
+
+    @Provides
+    fun providecontext() : Context = context
+
     @Provides
     @Singleton
     fun provideAPI(): BookAPI {
