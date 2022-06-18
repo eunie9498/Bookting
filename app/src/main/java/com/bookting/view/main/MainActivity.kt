@@ -25,7 +25,6 @@ open class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_ma
         FirebaseMessaging.getInstance().token.addOnCompleteListener(
             OnCompleteListener { task ->
                 if(!task.isSuccessful){
-                    Log.e("FCM Err", task.exception.toString())
                     return@OnCompleteListener
                 }
                 sharedHelper.addPreference(MainConstants.Shared.TOKEN, task.result)
