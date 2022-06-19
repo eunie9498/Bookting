@@ -29,7 +29,7 @@ data class ResultResponse(
 data class GetBookDetailResponse(
     val result: String? = "",
     val reason: String? = "",
-    val data: BookItem
+    val data: BookItem?=null
 ): Parcelable
 
 @Parcelize
