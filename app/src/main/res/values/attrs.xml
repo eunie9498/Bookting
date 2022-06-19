@@ -9,4 +9,9 @@
     <declare-styleable name="AppBarCenter">
         <attr name="setTxt"/>
     </declare-styleable>
+
+    <declare-styleable name="TabItem">
+        <attr name="setTxt"/>
+        <attr name="tabBg" format="reference|integer"/>
+    </declare-styleable>
 </resources>
