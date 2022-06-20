@@ -7,6 +7,8 @@ object MainConstants {
 
     val BASE_URL = "https://book.applebox.xyz/v1/"
 
+    val SUCCESS = "success"
+
     object Shared{
         val TOKEN = "token"
     }
