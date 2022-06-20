@@ -1,4 +1,4 @@
-package com.bookting.main
+package com.bookting.view.main
 
 import android.content.SharedPreferences
 import android.os.Bundle
