@@ -45,7 +45,7 @@ class SharedHelper(context: Context) {
     private fun newEncryptUtil(mode: Int, input: ByteArray): String {
         try {
 
-            val key = ("checking" + getToken).substring(0, 32).toByteArray(Charset.defaultCharset())
+            val key = ("chaeking" + getToken).substring(0, 32).toByteArray(Charset.defaultCharset())
             val iv = getToken.substring(0, 16).toByteArray(Charset.defaultCharset())
             val secretKeySpec = SecretKeySpec(key, "AES")
             val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")

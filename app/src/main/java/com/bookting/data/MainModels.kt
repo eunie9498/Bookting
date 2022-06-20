@@ -11,7 +11,6 @@ data class Users(
 
 @Parcelize
 data class JoinBody(
-    var birth_date: String?="",
     var email: String?="",
     var name: String?="",
     var password: String?="",
