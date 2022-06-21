@@ -13,15 +13,14 @@ import javax.inject.Inject
 class MainRepository {
     @Inject
     lateinit var api: BookAPI
-    var viewModel: MainViewModel = MainViewModel()
-    
+
     fun join(body: JoinBody): Disposable {
         return api.run {
             joinUser(body)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
-                    if(it.result == MainConstants.SUCCESS) {
+                    if (it.result == MainConstants.SUCCESS) {
 
                     }
                 }
