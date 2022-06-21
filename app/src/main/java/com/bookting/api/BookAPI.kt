@@ -1,17 +1,75 @@
 package com.bookting.api
 
-import com.bookting.data.GetBookDetailResponse
-import com.bookting.data.JoinBody
-import com.bookting.data.ResultResponse
+import com.bookting.data.*
 import io.reactivex.rxjava3.core.Observable
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
+import retrofit2.http.*
 
 interface BookAPI {
-    @GET("books/{bookId}")
-    fun getBooks(): Observable<GetBookDetailResponse>
+    @GET("books/{book_id}")
+    fun getBookDetails(): Observable<GetBookDetailResponse>
 
-    @POST("users")
-     fun joinUser(@Body body: JoinBody): Observable<ResultResponse>
+    @POST("auth/join")
+    fun joinUser(@Body body: JoinBody): Observable<ResultResponse>
+
+    @POST("auth/login")
+    fun login(@Body body: LoginBody): Observable<LoginResponse>
+
+    @GET("tags")
+    fun getTags(): Observable<TagResponse>
+
+    @GET("books")
+    fun searchBooks(
+        @Query("query") query: String,
+        @Query("target") target: String,
+        @Query("sort") sort: String,
+        @Query("page") page: Int,
+        @Query("size") size: Int
+    ): Observable<SearchBookResponse>
+
+    //읽고싶은책
+    @POST("book-memories/wish")
+    fun wishBook(
+        @Body body: WishBookData
+    ): Observable<ResultResponse>
+
+    @GET("book-memories/wish")
+    fun getWishBook(
+        @Query("page") page: Int,
+        @Query("size") size: Int
+    ): Observable<WishBookResponse>
+
+    @PUT("book-memories/wish/{book_memory_wish_id}")
+    fun editWishBook(
+        @Path("book_memory_wish_id") book_memory_wish_id: Int,
+        @Body body: MemoBody
+    ): Observable<ResultResponse>
+
+    @DELETE("book-memories/wish/{book_memory_wish_id}")
+    fun deleteWishBook(
+        @Path("book_memory_wish_id") book_memory_wish_id: Int
+    ): Observable<ResultResponse>
+
+    //이미 읽은
+    @POST("book-memories/complete")
+    fun SetAlreadyRead(
+        @Body body: AlreadyBookItem
+    ): Observable<ResultResponse>
+
+    @GET("book-memories/complete")
+    fun GetAlreadyRead(
+        @Query("page") page: Int,
+        @Query("size") size: Int
+    ): Observable<GetAlreadyBookResponse>
+
+    @PUT("book-memories/complete/{book_memory_complete_id}")
+    fun EditAlreadyRead(
+        @Path("book_memory_complete_id") book_memory_complete_id: Int,
+        @Body body: EditAlreadyBookBody
+    ): Observable<ResultResponse>
+
+    @DELETE("book-memories/complete/{book_memory_complete_id}")
+    fun DeleteAlreadyRead(
+        @Path("book_memory_complete_id") book_memory_complete_id: Int,
+    ): Observable<ResultResponse>
+
 }
