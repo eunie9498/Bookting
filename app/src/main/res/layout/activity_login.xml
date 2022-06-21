@@ -7,6 +7,10 @@
         <variable
             name="email"
             type="String" />
+
+        <variable
+            name="act"
+            type="com.bookting.view.start.LoginActivity" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -40,5 +44,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/idField" />
+
+
+        <TextView
+            android:id="@+id/btnJoin"
+            style="@style/ButtonRadius10"
+            android:layout_marginTop="60dp"
+            android:background="@drawable/btn_radius20_blue"
+            android:text="@string/login"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pwField" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
