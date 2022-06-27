@@ -11,6 +11,33 @@
         <item name="android:textColor">@color/grey800</item>
     </style>
 
+    <style name="Bold16">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">@color/grey900</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Normal16">
+        <item name="android:textSize">16dp</item>
+        <item name="android:textColor">@color/grey900</item>
+    </style>
+
+    <style name="Bold13">
+        <item name="android:textSize">13dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/grey900</item>
+    </style>
+
+    <style name="Normal13">
+        <item name="android:textSize">13dp</item>
+        <item name="android:textColor">@color/grey900</item>
+    </style>
+
+    <style name="Normal12">
+        <item name="android:textSize">12dp</item>
+        <item name="android:textColor">@color/grey900</item>
+    </style>
+
     <style name="ButtonRadius10">
         <item name="android:textSize">13dp</item>
         <item name="android:layout_width">match_parent</item>
