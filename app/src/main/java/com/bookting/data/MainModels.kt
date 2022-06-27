@@ -12,7 +12,7 @@ data class Users(
 @Parcelize
 data class JoinBody(
     var email: String? = "",
-    var name: String? = "",
+    var nickname: String? = "",
     var password: String? = "",
     var secret_key: String? = "",
     var sex: String? = ""

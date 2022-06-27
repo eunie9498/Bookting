@@ -4,14 +4,12 @@ import com.bookting.BaseActivity
 import com.bookting.R
 import com.bookting.data.JoinBody
 import com.bookting.databinding.ActivityJoinBinding
-import com.bookting.repository.MainRepository
+import java.util.*
 
 class JoinActivity : BaseActivity<ActivityJoinBinding>(R.layout.activity_join) {
-    lateinit var repository: MainRepository
 
     override fun ActivityJoinBinding.onCreate() {
         act = this@JoinActivity
-        repository = MainRepository()
 
         idField.apply {
             setHtColor(R.color.purple400)
@@ -33,11 +31,11 @@ class JoinActivity : BaseActivity<ActivityJoinBinding>(R.layout.activity_join) {
     }
 
     fun join() = with(binding) {
-        repository.join(
-            JoinBody(
-                email = idField.getEt(), name = nickField.getEt(), password = pwField.getEt(),
-                secret_key = sharedHelper.newEncrypt(pwField.getEt().toByteArray()), "W"
-            )
+        val sex = if(radioMan.isSelected) "M" else "W"
+        viewModel.join(this@JoinActivity, JoinBody(
+                email = idField.getEt(), nickname = nickField.getEt(), password = sharedHelper.newEncrypt(pwField.getEt().toByteArray()),
+                secret_key = sharedHelper.getFbToken, sex)
         )
+
     }
 }
