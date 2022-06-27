@@ -3,7 +3,7 @@
     <attr name="setTxt" format="string"/>
 
     <declare-styleable name="InputTxt">
-
+        <attr name="android:inputType"/>
     </declare-styleable>
 
     <declare-styleable name="AppBarCenter">

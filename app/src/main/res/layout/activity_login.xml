@@ -55,10 +55,10 @@
             style="@style/ButtonRadius10"
             android:layout_marginTop="60dp"
             android:background="@drawable/btn_radius20_blue"
+            android:onClick="@{()->act.login(email, pw)}"
             android:text="@string/login"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
-            android:onClick="@{()->act.login(email, pw)}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/pwField" />
 

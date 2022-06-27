@@ -1,12 +1,15 @@
 package com.bookting.ui
 
+import android.R.attr.password
 import android.content.Context
+import android.text.InputType
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import com.bookting.R
 import com.bookting.databinding.CustomInputTxtBinding
+
 
 class InputTxt constructor(
     context: Context,
@@ -17,6 +20,7 @@ class InputTxt constructor(
 
     init {
         val a = context.obtainStyledAttributes(R.styleable.InputTxt)
+
         a.recycle()
     }
 
@@ -26,6 +30,9 @@ class InputTxt constructor(
 
     fun setHt(hint: String) {
         binding.inputLayout.hint = hint
+        if (hint == context.getString(R.string.pw))
+            binding.tvInput.inputType =
+                InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
     }
 
     fun setHtColor(color: Int) {
@@ -35,7 +42,6 @@ class InputTxt constructor(
     fun setTxtColor(color: Int) {
         binding.tvInput.setTextColor(ContextCompat.getColor(binding.root.context, color))
     }
-
 
     fun setErr(err: String) = with(binding) {
         inputLayout.boxStrokeColor = ContextCompat.getColor(binding.root.context, R.color.red800)
