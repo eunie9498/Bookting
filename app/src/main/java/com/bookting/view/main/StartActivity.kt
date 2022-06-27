@@ -6,13 +6,13 @@ import android.os.Bundle
 import com.bookting.BaseActivity
 import com.bookting.R
 import com.bookting.data.MainConstants
-import com.bookting.databinding.ActivityMainBinding
+import com.bookting.databinding.ActivityStartBinding
 import com.bookting.view.start.JoinActivity
 import com.bookting.view.start.LoginActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
 
-open class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
+open class StartActivity : BaseActivity<ActivityStartBinding>(R.layout.activity_start) {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,7 +26,6 @@ open class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_ma
             }
         )
         binding.activity = this
-
     }
 
     fun goJoin(){
