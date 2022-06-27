@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Bookting">
         <activity
-            android:name=".view.main.MainActivity"
+            android:name=".view.main.StartActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
