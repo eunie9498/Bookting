@@ -27,8 +27,14 @@ class SharedHelper(context: Context) {
         }
     }
 
-    val getToken: String
-        get() = sharedPreferences.getString(MainConstants.Shared.TOKEN, "") ?: ""
+    val getFbToken: String
+    get() = sharedPreferences.getString(MainConstants.Shared.FB_TOKEN, "")?:""
+
+    val getAccessToken: String
+        get() = sharedPreferences.getString(MainConstants.Shared.ACCESS_TOKEN, "") ?: ""
+
+    val getRefreshToken: String
+        get() = sharedPreferences.getString(MainConstants.Shared.REFRESH_TOKEN, "") ?: ""
 
     fun newEncrypt(
         input: ByteArray,
@@ -45,8 +51,8 @@ class SharedHelper(context: Context) {
     private fun newEncryptUtil(mode: Int, input: ByteArray): String {
         try {
 
-            val key = ("chaeking" + getToken).substring(0, 32).toByteArray(Charset.defaultCharset())
-            val iv = getToken.substring(0, 16).toByteArray(Charset.defaultCharset())
+            val key = ("chaeking" + getFbToken).substring(0, 32).toByteArray(Charset.defaultCharset())
+            val iv = getFbToken.substring(0, 16).toByteArray(Charset.defaultCharset())
             val secretKeySpec = SecretKeySpec(key, "AES")
             val cipher = Cipher.getInstance("AES/CBC/PKCS5Padding")
             cipher.init(mode, secretKeySpec, IvParameterSpec(iv))

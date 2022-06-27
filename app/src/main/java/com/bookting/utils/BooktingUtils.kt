@@ -10,6 +10,7 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
 import android.view.WindowManager
+import android.widget.Toast
 import java.nio.charset.Charset
 import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
@@ -38,4 +39,8 @@ fun Activity.setStatusTrans() {
             WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         window.setDecorFitsSystemWindows(false)
     }
+}
+
+fun showToast(context: Context, toast: String){
+    Toast.makeText(context, toast, Toast.LENGTH_LONG).show()
 }
