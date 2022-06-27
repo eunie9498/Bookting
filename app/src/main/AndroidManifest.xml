@@ -27,6 +27,10 @@
         <activity android:name=".view.main.NetworkActivity"
             android:exported="false"/>
 
+        <activity android:name=".view.start.LoginActivity"
+            android:noHistory="true"
+            android:exported="false"/>
+
         <service
             android:name=".FbMessaging"
             android:exported="false">
