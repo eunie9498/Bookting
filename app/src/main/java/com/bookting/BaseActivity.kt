@@ -21,9 +21,9 @@ open class BaseActivity<T : ViewDataBinding>(@LayoutRes val layoutRes: Int) : Ne
         setContentView(R.layout.activity_main)
 
         binding = DataBindingUtil.setContentView(this, layoutRes)
-        val factory = ViewModelFactory(MainRepository())
+        val factory = ViewModelFactory(MainRepository(this))
         viewModel = ViewModelProvider(this, factory).get(MainViewModel::class.java)
-        repository = MainRepository()
+        repository = MainRepository(this)
 
         binding.onCreate()
     }

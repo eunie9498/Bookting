@@ -10,6 +10,8 @@ object MainConstants {
     val SUCCESS = "success"
 
     object Shared{
-        val TOKEN = "token"
+        val ACCESS_TOKEN = "access_token"
+        val REFRESH_TOKEN = "refresh_token"
+        val FB_TOKEN = "fb_token"
     }
 }
