@@ -1,9 +1,11 @@
 package com.bookting.view.start
 
+import android.util.Log
 import com.bookting.BaseActivity
 import com.bookting.R
 import com.bookting.data.JoinBody
 import com.bookting.databinding.ActivityJoinBinding
+import com.google.gson.Gson
 import java.util.*
 
 class JoinActivity : BaseActivity<ActivityJoinBinding>(R.layout.activity_join) {
@@ -31,11 +33,14 @@ class JoinActivity : BaseActivity<ActivityJoinBinding>(R.layout.activity_join) {
     }
 
     fun join() = with(binding) {
-        val sex = if(radioMan.isSelected) "M" else "W"
-        viewModel.join(this@JoinActivity, JoinBody(
-                email = idField.getEt(), nickname = nickField.getEt(), password = sharedHelper.newEncrypt(pwField.getEt().toByteArray()),
-                secret_key = sharedHelper.getFbToken, sex)
+        val sex = if (radioMan.isSelected) "M" else "F"
+        val body = JoinBody(
+            email = idField.getEt(),
+            nickname = nickField.getEt(),
+            password = sharedHelper.newEncrypt(pwField.getEt().toByteArray()),
+            secret_key = sharedHelper.getFbToken.substring(0, 32),
+            sex
         )
-
+        viewModel.join(this@JoinActivity, body)
     }
 }

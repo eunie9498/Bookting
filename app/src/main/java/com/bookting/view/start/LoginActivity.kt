@@ -28,7 +28,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             login(
                 LoginBody(
                     email = id,
-                    sharedHelper.newEncrypt(pw.toByteArray()), sharedHelper.getFbToken
+                    sharedHelper.newEncrypt(pw.toByteArray()), sharedHelper.getFbToken.substring(0,32)
                 )
             )
                 .subscribeOn(Schedulers.io())
