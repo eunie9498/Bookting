@@ -4,6 +4,7 @@ import android.util.Log
 import com.bookting.BaseActivity
 import com.bookting.R
 import com.bookting.data.JoinBody
+import com.bookting.data.MainConstants
 import com.bookting.databinding.ActivityJoinBinding
 import com.google.gson.Gson
 import java.util.*
@@ -33,7 +34,7 @@ class JoinActivity : BaseActivity<ActivityJoinBinding>(R.layout.activity_join) {
     }
 
     fun join() = with(binding) {
-        val sex = if (radioMan.isSelected) "M" else "F"
+        val sex = if (radioMan.isSelected) MainConstants.MAN else MainConstants.WOMAN
         val body = JoinBody(
             email = idField.getEt(),
             nickname = nickField.getEt(),

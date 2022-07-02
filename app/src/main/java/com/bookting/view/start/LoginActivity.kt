@@ -28,7 +28,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             login(
                 LoginBody(
                     email = id,
-                    sharedHelper.newEncrypt(pw.toByteArray()), sharedHelper.getFbToken.substring(0,32)
+                    sharedHelper.newEncrypt(pw.toByteArray()),
+                    sharedHelper.getFbToken.substring(0, 32)
                 )
             )
                 .subscribeOn(Schedulers.io())
@@ -51,10 +52,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                         showToastOneBtn(
                             getString(R.string.fail),
                             getString(R.string.login_fail),
-                            getString(R.string.ok),
-                            {
+                            getString(R.string.ok)
+                        ) {
 
-                            })
+                        }
                     }
                 }
         }

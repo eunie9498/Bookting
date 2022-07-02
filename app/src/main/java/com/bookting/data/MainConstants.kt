@@ -9,6 +9,9 @@ object MainConstants {
 
     val SUCCESS = "success"
 
+    val MAN = "M"
+    val WOMAN = "W"
+
     object Shared{
         val ACCESS_TOKEN = "access_token"
         val REFRESH_TOKEN = "refresh_token"
