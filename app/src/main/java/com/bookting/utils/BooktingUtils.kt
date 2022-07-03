@@ -41,6 +41,21 @@ fun Activity.setStatusTrans() {
     }
 }
 
-fun showToast(context: Context, toast: String){
+fun showToast(context: Context, toast: String) {
     Toast.makeText(context, toast, Toast.LENGTH_LONG).show()
+}
+
+fun Activity.setFullScreen() {
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
+        val controller = window.insetsController
+        controller?.let {  
+            it.hide(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
+            it.systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
+        }
+    } else {
+        this.window.setFlags(
+            WindowManager.LayoutParams.FLAG_FULLSCREEN,
+            WindowManager.LayoutParams.FLAG_FULLSCREEN
+        )
+    }
 }
