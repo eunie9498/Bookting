@@ -10,7 +10,9 @@ import android.view.View
 import android.view.WindowInsets
 import android.view.WindowInsetsController
 import android.view.WindowManager
+import android.widget.ImageView
 import android.widget.Toast
+import com.bumptech.glide.Glide
 import java.nio.charset.Charset
 import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
@@ -48,7 +50,7 @@ fun showToast(context: Context, toast: String) {
 fun Activity.setFullScreen() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
         val controller = window.insetsController
-        controller?.let {  
+        controller?.let {
             it.hide(WindowInsets.Type.statusBars() or WindowInsets.Type.navigationBars())
             it.systemBarsBehavior = WindowInsetsController.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         }
@@ -58,4 +60,8 @@ fun Activity.setFullScreen() {
             WindowManager.LayoutParams.FLAG_FULLSCREEN
         )
     }
+}
+
+fun ImageView.setImg(uri: Any) {
+    Glide.with(this).load(uri).into(this)
 }

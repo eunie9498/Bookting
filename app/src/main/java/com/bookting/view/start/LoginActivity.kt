@@ -6,6 +6,8 @@ import com.bookting.R
 import com.bookting.data.LoginBody
 import com.bookting.data.MainConstants
 import com.bookting.databinding.ActivityLoginBinding
+import com.bookting.utils.setFullScreen
+import com.bookting.utils.setImg
 import com.bookting.utils.setStatusTrans
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
@@ -18,8 +20,10 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         binding.appBar.binding.btnBack.setOnClickListener {
             onBackPressed()
         }
+
         binding.email = binding.idField.getEt()
         binding.pw = binding.pwField.getEt()
+        this@LoginActivity.setFullScreen()
 
     }
 
