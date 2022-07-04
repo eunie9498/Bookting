@@ -1,17 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
-        <variable
-            name="email"
-            type="String" />
-
-        <variable
-            name="pw"
-            type="String" />
-
         <variable
             name="act"
             type="com.bookting.view.start.LoginActivity" />
@@ -36,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="60dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/appBar" />
 
@@ -46,6 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/idField" />
 
@@ -55,10 +49,11 @@
             style="@style/ButtonRadius10"
             android:layout_marginTop="60dp"
             android:background="@drawable/btn_radius20_blue"
-            android:onClick="@{()->act.login(email, pw)}"
+            android:onClick="@{()->act.login()}"
             android:text="@string/login"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/pwField" />
 

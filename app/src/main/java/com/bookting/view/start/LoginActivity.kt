@@ -1,5 +1,6 @@
 package com.bookting.view.start
 
+import android.util.Log
 import androidx.core.view.get
 import com.bookting.BaseActivity
 import com.bookting.R
@@ -14,6 +15,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login) {
 
+
     override fun ActivityLoginBinding.onCreate() {
 
         binding.act = this@LoginActivity
@@ -21,47 +23,16 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             onBackPressed()
         }
 
-        binding.email = binding.idField.getEt()
-        binding.pw = binding.pwField.getEt()
         this@LoginActivity.setFullScreen()
-
+      
     }
 
-    fun login(id: String, pw: String) {
-        api.run {
-            login(
-                LoginBody(
-                    email = id,
-                    sharedHelper.newEncrypt(pw.toByteArray()),
-                    sharedHelper.getFbToken.substring(0, 32)
-                )
-            )
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    if (it.result == MainConstants.SUCCESS) {
-
-                        sharedHelper.addPreference(
-                            MainConstants.Shared.ACCESS_TOKEN,
-                            it.data!!.access_token
-                        )
-                        sharedHelper.addPreference(
-                            MainConstants.Shared.REFRESH_TOKEN,
-                            it.data!!.refresh_token
-                        )
-
-                        moveToMain()
-
-                    } else {
-                        showToastOneBtn(
-                            getString(R.string.fail),
-                            getString(R.string.login_fail),
-                            getString(R.string.ok)
-                        ) {
-
-                        }
-                    }
-                }
-        }
+    fun login()
+    {
+        viewModel.login(LoginBody(
+            email = binding.idField.getEt(),
+            sharedHelper.newEncrypt(binding.pwField.getEt().toByteArray()),
+            sharedHelper.getFbToken.substring(0, 32)
+        ))
     }
 }
