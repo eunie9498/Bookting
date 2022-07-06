@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="main_badge_height">55dp</dimen>
+    <dimen name="main_badge_width">80dp</dimen>
+</resources>

@@ -14,4 +14,8 @@
         <attr name="setTxt"/>
         <attr name="tabBg" format="reference|integer"/>
     </declare-styleable>
+
+    <declare-styleable name="MainBadge">
+        <attr name="setTxt"/>
+    </declare-styleable>
 </resources>
