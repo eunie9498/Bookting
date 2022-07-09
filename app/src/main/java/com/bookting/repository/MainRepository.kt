@@ -3,6 +3,7 @@ package com.bookting.repository
 import android.content.Context
 import android.util.Log
 import com.bookting.BaseActivity
+import com.bookting.R
 import com.bookting.api.BookAPI
 import com.bookting.data.*
 import com.bookting.di.BookComponent
@@ -30,7 +31,6 @@ class MainRepository(context: Context) {
         component.inject(this)
     }
 
-
     fun join(context: Context, body: JoinBody) {
         api.run {
             joinUser(body)
@@ -47,25 +47,6 @@ class MainRepository(context: Context) {
         }
     }
 
-    fun login(body: LoginBody) {
-        api.run {
-            login(body)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    if (it.result == MainConstants.SUCCESS) {
-                        it.data?.let { data ->
-                            sharedHelper.addPreference(
-                                MainConstants.Shared.REFRESH_TOKEN,
-                                data.refresh_token
-                            )
-                            sharedHelper.addPreference(
-                                MainConstants.Shared.ACCESS_TOKEN,
-                                data.access_token
-                            )
-                        }
-                    }
-                }
-        }
-    }
+    fun login(body: LoginBody) = api.login(body)
+
 }
