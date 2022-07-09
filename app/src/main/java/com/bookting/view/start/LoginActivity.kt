@@ -2,6 +2,7 @@ package com.bookting.view.start
 
 import android.util.Log
 import androidx.core.view.get
+import androidx.lifecycle.Observer
 import com.bookting.BaseActivity
 import com.bookting.R
 import com.bookting.data.LoginBody
@@ -24,7 +25,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         }
 
         this@LoginActivity.setFullScreen()
-      
+
     }
 
     fun login()
@@ -34,5 +35,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             sharedHelper.newEncrypt(binding.pwField.getEt().toByteArray()),
             sharedHelper.getFbToken.substring(0, 32)
         ))
+
+        viewModel.loginResponse.observe(this, Observer {
+            if(it.result == MainConstants.SUCCESS) {
+                moveToMain()
+            }
+        })
     }
 }
