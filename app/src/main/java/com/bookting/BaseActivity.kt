@@ -51,10 +51,10 @@ open class BaseActivity<T : ViewDataBinding>(@LayoutRes val layoutRes: Int) : Ne
         onebtn.apply {
             setTitle(title)
             setMsg(msg)
-            setBtn(btnTxt, {
+            setBtn(btnTxt) {
                 btnListener
                 dismiss()
-            })
+            }
         }
         onebtn.show()
     }
