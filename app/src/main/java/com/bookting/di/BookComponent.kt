@@ -2,6 +2,7 @@ package com.bookting.di
 
 
 import com.bookting.FbMessaging
+import com.bookting.MainFragment
 import com.bookting.repository.MainRepository
 import com.bookting.view.main.NetworkActivity
 import dagger.Component
@@ -13,6 +14,7 @@ interface BookComponent {
     fun inject(activity: NetworkActivity)
     fun inject(repository: MainRepository)
     fun inject(service: FbMessaging)
+    fun inject(fragment: MainFragment)
 
     @Component.Builder
     interface Builder {
