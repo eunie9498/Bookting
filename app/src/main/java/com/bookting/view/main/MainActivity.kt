@@ -4,6 +4,7 @@ import com.bookting.BaseActivity
 import com.bookting.R
 import com.bookting.databinding.ActivityMainBinding
 import com.bookting.ui.TabItem
+import com.bookting.view.main.home.HomeFragment
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     lateinit var tabs: Array<TabItem>

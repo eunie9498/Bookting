@@ -1,4 +1,4 @@
-package com.bookting.view.main
+package com.bookting.view.main.home
 
 import com.bookting.BaseActivity
 import com.bookting.R
