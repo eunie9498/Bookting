@@ -41,5 +41,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
                 moveToMain()
             }
         })
+
     }
 }

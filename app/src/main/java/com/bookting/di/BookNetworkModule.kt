@@ -9,6 +9,7 @@ import com.bookting.data.MainConstants
 import com.bookting.data.SharedHelper
 import dagger.Module
 import dagger.Provides
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory

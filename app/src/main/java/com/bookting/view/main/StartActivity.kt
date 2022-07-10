@@ -3,6 +3,7 @@ package com.bookting.view.main
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import com.bookting.BaseActivity
 import com.bookting.R
 import com.bookting.data.MainConstants
@@ -19,22 +20,31 @@ open class StartActivity : BaseActivity<ActivityStartBinding>(R.layout.activity_
 
         FirebaseMessaging.getInstance().token.addOnCompleteListener(
             OnCompleteListener { task ->
-                if(!task.isSuccessful){
+                if (!task.isSuccessful) {
                     return@OnCompleteListener
                 }
                 sharedHelper.addPreference(MainConstants.Shared.FB_TOKEN, task.result)
             }
         )
         binding.activity = this
+
+        if (sharedHelper.getAccessToken != "") {
+            goMain()
+        }
     }
 
-    fun goJoin(){
+    fun goJoin() {
         val intent = Intent(this, JoinActivity::class.java)
         startActivity(intent)
     }
 
-    fun goLogin(){
+    fun goLogin() {
         val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+    }
+
+    fun goMain() {
+        val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
 }
