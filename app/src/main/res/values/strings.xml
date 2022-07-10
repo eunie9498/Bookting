@@ -12,6 +12,12 @@
     <string name="cancel">취소</string>
     <string name="success">성공</string>
     <string name="fail">실패</string>
+
+    <!--Tab-->
+    <string name="tab_home">홈</string>
+    <string name="tab_list">책장</string>
+    <string name="tab_search">검색</string>
+    <string name="tab_setting">설정</string>
     
     <string name="login_success">로그인에 성공하였습니다</string>
     <string name="login_fail">로그인에 실패했습니다</string>

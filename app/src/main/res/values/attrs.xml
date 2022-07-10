@@ -12,7 +12,7 @@
 
     <declare-styleable name="TabItem">
         <attr name="setTxt"/>
-        <attr name="tabBg" format="reference|integer"/>
+        <attr name="tabBg" format="reference"/>
     </declare-styleable>
 
     <declare-styleable name="MainBadge">
