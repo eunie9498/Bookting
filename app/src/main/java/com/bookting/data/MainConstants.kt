@@ -12,9 +12,18 @@ object MainConstants {
     val MAN = "M"
     val WOMAN = "W"
 
-    object Shared{
+    object Shared {
         val ACCESS_TOKEN = "access_token"
         val REFRESH_TOKEN = "refresh_token"
         val FB_TOKEN = "fb_token"
     }
+
+    object ViewHolder {
+        val TOP = 0
+        val HEADER = 1
+        val ITEM1 = 2
+        val ITEM2 = 3
+        val GRAPH = 10
+    }
+
 }
