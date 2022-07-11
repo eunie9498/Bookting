@@ -14,6 +14,9 @@ import com.bookting.viewmodel.MainViewModel
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
+import okhttp3.Interceptor
+import okhttp3.Response
+import java.io.IOException
 import javax.inject.Inject
 
 class MainRepository(context: Context) {
@@ -39,13 +42,14 @@ class MainRepository(context: Context) {
                 .subscribe {
                     if (it.result == MainConstants.SUCCESS) {
                         showToast(context, "회원가입 완료")
-                    }
-                    else{
-                        Log.d("체크해보자", it.reason?:"")
+                    } else {
+                        Log.d("체크해보자", it.reason ?: "")
                     }
                 }
         }
     }
+
+    fun home() = api.getHomeByUser()
 
     fun login(body: LoginBody) = api.login(body)
 

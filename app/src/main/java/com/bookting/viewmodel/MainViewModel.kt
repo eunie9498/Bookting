@@ -2,6 +2,7 @@ package com.bookting.viewmodel
 
 import android.content.Context
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bookting.data.*
@@ -13,13 +14,22 @@ class MainViewModel(val repository: MainRepository) : ViewModel() {
 
     val loginResponse = MutableLiveData<LoginResponse>()
 
-    val user = MutableLiveData<Users>()
+    private val _homeResponse = MutableLiveData<HomeResponse>()
 
-    val _user: MutableLiveData<Users>
-        get() = user
+    val homeResponse : LiveData<HomeResponse>
+        get() = _homeResponse
 
-    fun getPw(email: String, pw: String) {
-        user.value = Users(email, pw)
+    fun getHome() = repository.run {
+        home().subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                if(it.result == MainConstants.SUCCESS){
+                    _homeResponse.postValue(it)
+                }
+                else{
+                    Log.d("체크해보자", it.reason!!)
+                }
+            }
     }
 
     fun join(context: Context, body: JoinBody) = repository.join(context, body)
