@@ -1,7 +1,6 @@
 package com.bookting.data
 
 import android.os.Parcelable
-import com.bookting.GetViewType
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -35,16 +34,12 @@ sealed class HOME {
     data class HomeBookContent(
         var amount: Int,
         var name: String,
-    ) : Parcelable, GetViewType, HOME() {
-        override fun viewTypes() = MainConstants.ViewHolder.GRAPH
-    }
+    ) : Parcelable,  HOME()
 
     @Parcelize
     data class Nick(
         var nickName: String?
-    ) : Parcelable, HOME(), GetViewType {
-        override fun viewTypes() = MainConstants.ViewHolder.TOP
-    }
+    ) : Parcelable, HOME()
 }
 
 @Parcelize
