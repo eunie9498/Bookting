@@ -5,6 +5,10 @@ import io.reactivex.rxjava3.core.Observable
 import retrofit2.http.*
 
 interface BookAPI {
+
+    @GET("home")
+    fun getHomeByUser(): Observable<HomeResponse>
+
     @GET("books/{book_id}")
     fun getBookDetails(): Observable<GetBookDetailResponse>
 

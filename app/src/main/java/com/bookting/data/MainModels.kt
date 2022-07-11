@@ -1,12 +1,59 @@
 package com.bookting.data
 
 import android.os.Parcelable
+import com.bookting.GetViewType
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Users(
     val email: String? = "",
     val pw: String? = ""
+) : Parcelable
+
+@Parcelize
+data class HomeResponse(
+    var result: String? = "",
+    var reason: String? = "",
+    var data: HomeData
+) : Parcelable
+
+@Parcelize
+data class HomeData(
+    var best_seller: List<HomeBestSeller>,
+    var book_analysis: HomeBookContents
+) : Parcelable
+
+@Parcelize
+data class HomeBookContents(
+    var contents: List<HOME.HomeBookContent>,
+    var total_amount: Int,
+    var type: String
+) : Parcelable
+
+sealed class HOME {
+    @Parcelize
+    data class HomeBookContent(
+        var amount: Int,
+        var name: String,
+    ) : Parcelable, GetViewType, HOME() {
+        override fun viewTypes() = MainConstants.ViewHolder.GRAPH
+    }
+
+    @Parcelize
+    data class Nick(
+        var nickName: String?
+    ) : Parcelable, HOME(), GetViewType {
+        override fun viewTypes() = MainConstants.ViewHolder.TOP
+    }
+}
+
+@Parcelize
+data class HomeBestSeller(
+    var authors: String,
+    var id: Int,
+    var image_url: String,
+    var name: String,
+    var publisher: String
 ) : Parcelable
 
 @Parcelize
