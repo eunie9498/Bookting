@@ -20,11 +20,9 @@ class MainBadge(
         val a = context.obtainStyledAttributes(attributes, R.styleable.MainBadge)
         if (a.hasValue(R.styleable.MainBadge_setTxt))
             binding.tvBadge.text = a.getText(R.styleable.MainBadge_setTxt)
+        if (a.hasValue(R.styleable.MainBadge_setEmoji))
+            binding.tvEmoji.text = a.getText(R.styleable.MainBadge_setEmoji)
         a.recycle()
-    }
-
-    fun setEmoji(emojiTxt: String) {
-        binding.tvEmoji.text = emojiTxt
     }
 
     fun setListener(listener: OnClickListener) {
