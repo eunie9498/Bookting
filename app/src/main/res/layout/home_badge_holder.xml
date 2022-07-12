@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.bookting.ui.MainBadge
+            android:id="@+id/badgeBest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/radius10_blue50"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:setEmoji="ð"
+            app:setTxt="@string/best_seller" />
+
+        <com.bookting.ui.MainBadge
+            android:id="@+id/badgeNew"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/radius10_purple50"
+            app:layout_constraintStart_toEndOf="@id/badgeBest"
+            app:layout_constraintTop_toTopOf="parent"
+            app:setEmoji="ð"
+            app:setTxt="@string/new_book" />
+
+        <com.bookting.ui.MainBadge
+            android:id="@+id/badgeSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:background="@drawable/radius10_red50"
+            app:layout_constraintStart_toEndOf="@id/badgeNew"
+            app:layout_constraintTop_toTopOf="parent"
+            app:setEmoji="ð"
+            app:setTxt="@string/search_book" />
+
+        <com.bookting.ui.RecordBanner
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="25dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/badgeSearch" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bookting.data.HOME
 import com.bookting.data.MainConstants
+import com.bookting.databinding.HomeBadgeHolderBinding
 import com.bookting.databinding.HomeTopHolderBinding
 
 class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -14,6 +15,9 @@ class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         when (holder) {
             is HomeTop -> {
                 holder.bind(itemList[position] as HOME.Nick)
+            }
+            is HomeBadge -> {
+                holder.bind(itemList[position] as HOME.Badge)
             }
         }
     }
@@ -26,6 +30,14 @@ class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                         LayoutInflater.from(parent.context),
                         parent,
                         false
+                    )
+                )
+            }
+
+            MainConstants.ViewHolder.HEADER -> {
+                return HomeBadge(
+                    HomeBadgeHolderBinding.inflate(
+                        LayoutInflater.from(parent.context), parent, false
                     )
                 )
             }
@@ -47,12 +59,21 @@ class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         notifyDataSetChanged()
     }
 
+    fun addBadge(item: HOME.Badge){
+        this.itemList.add(item)
+        notifyDataSetChanged()
+    }
+
     override fun getItemCount() = itemList.size
 
     override fun getItemViewType(position: Int): Int {
         when (itemList[position]) {
             is HOME.Nick -> {
                 return MainConstants.ViewHolder.TOP
+            }
+
+            is HOME.Badge -> {
+                return MainConstants.ViewHolder.HEADER
             }
 
             else -> {

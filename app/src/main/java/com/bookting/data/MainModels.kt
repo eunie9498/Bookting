@@ -1,6 +1,7 @@
 package com.bookting.data
 
 import android.os.Parcelable
+import com.bookting.view.main.home.HomeBadge
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -34,11 +35,19 @@ sealed class HOME {
     data class HomeBookContent(
         var amount: Int,
         var name: String,
-    ) : Parcelable,  HOME()
+    ) : Parcelable, HOME()
 
     @Parcelize
     data class Nick(
         var nickName: String?
+    ) : Parcelable, HOME()
+
+    object Badge : HOME()
+
+    @Parcelize
+    data class HomeGraph(
+        var name: String,
+        var amt: Int
     ) : Parcelable, HOME()
 }
 

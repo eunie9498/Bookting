@@ -15,10 +15,14 @@
 
         <TextView
             android:id="@+id/tvTop"
-            style="@style/Normal18"
-            android:layout_width="wrap_content"
+            style="@style/Normal22"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginStart="25dp"
+            android:gravity="left"
             android:text="@{topStr}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
