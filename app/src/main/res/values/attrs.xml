@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <attr name="setTxt" format="string"/>
+    <attr name="setEmoji" format="string"/>
 
     <declare-styleable name="InputTxt">
         <attr name="android:inputType"/>
@@ -17,5 +18,6 @@
 
     <declare-styleable name="MainBadge">
         <attr name="setTxt"/>
+        <attr name="setEmoji"/>
     </declare-styleable>
 </resources>
