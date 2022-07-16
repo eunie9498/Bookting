@@ -12,41 +12,41 @@
 
         <com.bookting.ui.MainBadge
             android:id="@+id/badgeBest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="110dp"
+            android:layout_height="80dp"
             android:layout_marginStart="24dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/radius10_blue50"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:setEmoji="ð"
+            app:setEmoji="@string/best_seller_emoji"
             app:setTxt="@string/best_seller" />
 
         <com.bookting.ui.MainBadge
             android:id="@+id/badgeNew"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
+            android:layout_width="110dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/radius10_purple50"
             app:layout_constraintStart_toEndOf="@id/badgeBest"
             app:layout_constraintTop_toTopOf="parent"
-            app:setEmoji="ð"
+            app:setEmoji="@string/new_book_emoji"
             app:setTxt="@string/new_book" />
 
         <com.bookting.ui.MainBadge
             android:id="@+id/badgeSearch"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
+            android:layout_width="110dp"
+            android:layout_height="80dp"
+            android:layout_marginStart="15dp"
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/radius10_red50"
             app:layout_constraintStart_toEndOf="@id/badgeNew"
             app:layout_constraintTop_toTopOf="parent"
-            app:setEmoji="ð"
+            app:setEmoji="@string/search_book_emoji"
             app:setTxt="@string/search_book" />
 
         <com.bookting.ui.RecordBanner

@@ -13,8 +13,11 @@
     <string name="success">성공</string>
     <string name="fail">실패</string>
     <string name="best_seller">베스트셀러</string>
+    <string name="best_seller_emoji">&#128077;</string>
     <string name="new_book">신간</string>
+    <string name="new_book_emoji">&#127381;</string>
     <string name="search_book">도서검색</string>
+    <string name="search_book_emoji">&#128269;</string>
 
     <!--Tab-->
     <string name="tab_home">홈</string>
@@ -23,6 +26,8 @@
     <string name="tab_setting">설정</string>
 
     <string name="banner_record_more">더 많은 컨텐츠를 위해\n읽었던 책을 기록해주세요</string>
+
+    <string name="home_recommend">이런 책도\n읽어보셨나요?</string>
     
     <string name="login_success">로그인에 성공하였습니다</string>
     <string name="login_fail">로그인에 실패했습니다</string>
