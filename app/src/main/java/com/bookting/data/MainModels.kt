@@ -45,24 +45,33 @@ sealed class HOME {
     object Badge : HOME()
 
     @Parcelize
-    data class Recomm(
-        val data: List<GetBookData>? = null
-    ) : Parcelable, HOME()
-
-    @Parcelize
     data class HomeGraph(
         var name: String,
         var amt: Int
     ) : Parcelable, HOME()
+
+    @Parcelize
+    data class Recomm(
+        val data: List<GetBookData>? = null
+    ) : Parcelable, HOME()
 }
+
+
+@Parcelize
+data class BookData(
+    val authors: String? = "",
+    var id: Int,
+    var image_url: String? = "",
+    var name: String? = "",
+) : Parcelable
 
 @Parcelize
 data class HomeBestSeller(
-    var authors: String,
-    var id: Int,
-    var image_url: String,
-    var name: String,
-    var publisher: String
+    var authors: String? = "",
+    var id: Int? = 0,
+    var image_url: String? = "",
+    var name: String? = "",
+    var publisher: String? = ""
 ) : Parcelable
 
 @Parcelize
@@ -105,6 +114,22 @@ data class GetBookDetailResponse(
     val result: String? = "",
     val reason: String? = "",
     val data: BookDetailItem? = null
+) : Parcelable
+
+@Parcelize
+data class GetBookResponse(
+    val result: String? = "",
+    val reason: String? = "",
+    val data: List<GetBookData>? = null
+) : Parcelable
+
+@Parcelize
+data class GetBookData(
+    val authors: String? = "",
+    var id: Int? = 0,
+    var image_url: String? = "",
+    var name: String? = "",
+    var publisher: String? = ""
 ) : Parcelable
 
 @Parcelize

@@ -14,8 +14,8 @@ class HomeRecommend(val binding: HomeRecommendBinding) : RecyclerView.ViewHolder
         val arr = item.data!!
         arr.forEach {
             val single = SingleBook(root.context)
-            single.setBg(it.image_url)
-            single.setTxt(it.name)
+            single.setBg(it.image_url?:"")
+            single.setTxt(it.name?:"")
             items.add(single)
         }
 
