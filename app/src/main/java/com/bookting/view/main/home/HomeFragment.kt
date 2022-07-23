@@ -34,4 +34,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
     override fun onBest() {
         (requireActivity() as BaseActivity<*>).moveToBestAct()
     }
+
+    override fun onNew() {
+        (requireActivity() as BaseActivity<*>).moveToNew()
+    }
+
 }

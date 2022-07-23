@@ -41,6 +41,9 @@
         <activity android:name=".view.main.best.BestActivity"
             android:exported="false"/>
 
+        <activity android:name=".view.main.new.NewActivity"
+            android:exported="false"/>
+
         <service
             android:name=".FbMessaging"
             android:exported="false">

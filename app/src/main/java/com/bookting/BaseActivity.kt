@@ -14,6 +14,7 @@ import com.bookting.ui.ToastOneBtn
 import com.bookting.view.main.MainActivity
 import com.bookting.view.main.NetworkActivity
 import com.bookting.view.main.best.BestActivity
+import com.bookting.view.main.new.NewActivity
 import com.bookting.viewmodel.MainViewModel
 
 open class BaseActivity<T : ViewDataBinding>(@LayoutRes val layoutRes: Int) : NetworkActivity() {
@@ -71,6 +72,11 @@ open class BaseActivity<T : ViewDataBinding>(@LayoutRes val layoutRes: Int) : Ne
 
     fun moveToBestAct() {
         val i = Intent(this, BestActivity::class.java)
+        startActivity(i)
+    }
+
+    fun moveToNew(){
+        val i = Intent(this, NewActivity::class.java)
         startActivity(i)
     }
 }

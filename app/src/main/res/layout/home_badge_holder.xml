@@ -41,6 +41,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/radius10_purple50"
+            android:onClick="@{()->homeListener.onNew()}"
             app:layout_constraintStart_toEndOf="@id/badgeBest"
             app:layout_constraintTop_toTopOf="parent"
             app:setEmoji="@string/new_book_emoji"

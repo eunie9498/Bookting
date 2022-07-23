@@ -65,6 +65,21 @@ class MainViewModel(val repository: MainRepository) : ViewModel() {
         }
     }
 
+    fun newBooks() {
+        repository.run {
+            newBooks()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    if (it.result == MainConstants.SUCCESS) {
+                        _bookData.postValue(it.data!!.toMutableList())
+                    } else {
+                        Log.d("체크해보자", it.reason!!)
+                    }
+                }
+        }
+    }
+
     fun login(body: LoginBody) {
         repository.run {
             login(body)

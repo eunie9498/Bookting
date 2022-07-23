@@ -81,4 +81,8 @@ interface BookAPI {
     @GET("best-sellers")
     fun getBestSeller(): Observable<GetBookResponse>
 
+    @GET("new-books")
+    fun getNewBook(): Observable<GetBookResponse>
+
+
 }
