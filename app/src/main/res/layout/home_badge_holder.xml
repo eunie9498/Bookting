@@ -4,6 +4,15 @@
 
     <data>
 
+        <variable
+            name="holder"
+            type="com.bookting.view.main.home.HomeBadge" />
+
+        <import type="android.view.View" />
+
+        <variable
+            name="homeListener"
+            type="com.bookting.view.main.home.HomeListener" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,6 +27,7 @@
             android:layout_marginTop="30dp"
             android:layout_marginBottom="20dp"
             android:background="@drawable/radius10_blue50"
+            android:onClick="@{()->homeListener.onBest()}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:setEmoji="@string/best_seller_emoji"

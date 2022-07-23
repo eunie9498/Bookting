@@ -24,8 +24,9 @@ class MainViewModel(val repository: MainRepository) : ViewModel() {
     val bookData: LiveData<List<GetBookData>>
         get() = _bookData
 
+
     fun getHome() = repository.run {
-        val BooktingHeader = mutableMapOf<String,String>()
+        val BooktingHeader = mutableMapOf<String, String>()
         BooktingHeader["access_token"] = "Bearer " + sharedHelper.getRefreshToken
         home(BooktingHeader.toMap()).subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -33,12 +34,14 @@ class MainViewModel(val repository: MainRepository) : ViewModel() {
                 if (it.result == MainConstants.SUCCESS) {
                     _homeResponse.postValue(it)
                 } else {
-                    if(it.reason!!.contains("access_token")){
-                        login(LoginBody(
-                            email = "eunie@chaeking.co.kr",
-                            sharedHelper.newEncrypt("qqqq1111".toByteArray()),
-                            sharedHelper.getFbToken.substring(0, 32)
-                        ))
+                    if (it.reason!!.contains("access_token")) {
+                        login(
+                            LoginBody(
+                                email = "eunie@chaeking.co.kr",
+                                sharedHelper.newEncrypt("qqqq1111".toByteArray()),
+                                sharedHelper.getFbToken.substring(0, 32)
+                            )
+                        )
                     }
                     Log.d("체크해보자", it.reason!!)
                 }
@@ -46,6 +49,21 @@ class MainViewModel(val repository: MainRepository) : ViewModel() {
     }
 
     fun join(context: Context, body: JoinBody) = repository.join(context, body)
+
+    fun bestSeller() {
+        repository.run {
+            bestSeller()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    if (it.result == MainConstants.SUCCESS) {
+                        _bookData.postValue(it.data!!.toMutableList())
+                    } else {
+                        Log.d("체크해보자", it.reason!!)
+                    }
+                }
+        }
+    }
 
     fun login(body: LoginBody) {
         repository.run {
@@ -66,6 +84,8 @@ class MainViewModel(val repository: MainRepository) : ViewModel() {
                             )
                             loginResponse.postValue(it)
                         }
+                    } else {
+                        Log.d("체크해보자", it.reason!!)
                     }
                 }
         }

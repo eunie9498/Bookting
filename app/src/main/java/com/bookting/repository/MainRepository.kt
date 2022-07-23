@@ -16,6 +16,7 @@ import io.reactivex.rxjava3.disposables.Disposable
 import io.reactivex.rxjava3.schedulers.Schedulers
 import okhttp3.Interceptor
 import okhttp3.Response
+import retrofit2.http.Header
 import java.io.IOException
 import javax.inject.Inject
 
@@ -49,8 +50,12 @@ class MainRepository(context: Context) {
         }
     }
 
-    fun home() = api.getHomeByUser()
+    fun home(header: Map<String, String>) = api.getHomeByUser(header)
 
     fun login(body: LoginBody) = api.login(body)
+
+    fun bestSeller() = api.getBestSeller()
+
+    fun newBooks() = api.getNewBook()
 
 }

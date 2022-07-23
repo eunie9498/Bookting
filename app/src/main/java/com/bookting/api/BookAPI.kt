@@ -78,4 +78,7 @@ interface BookAPI {
         @Path("book_memory_complete_id") book_memory_complete_id: Int,
     ): Observable<ResultResponse>
 
+    @GET("best-sellers")
+    fun getBestSeller(): Observable<GetBookResponse>
+
 }

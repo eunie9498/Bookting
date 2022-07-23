@@ -1,6 +1,5 @@
 package com.bookting
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -14,6 +13,7 @@ import com.bookting.repository.MainRepository
 import com.bookting.ui.ToastOneBtn
 import com.bookting.view.main.MainActivity
 import com.bookting.view.main.NetworkActivity
+import com.bookting.view.main.best.BestActivity
 import com.bookting.viewmodel.MainViewModel
 
 open class BaseActivity<T : ViewDataBinding>(@LayoutRes val layoutRes: Int) : NetworkActivity() {
@@ -42,11 +42,16 @@ open class BaseActivity<T : ViewDataBinding>(@LayoutRes val layoutRes: Int) : Ne
 
     open fun T.onCreate() = Unit
 
-    fun showToast(toast: String){
+    fun showToast(toast: String) {
         Toast.makeText(binding.root.context, toast, Toast.LENGTH_SHORT).show()
     }
 
-    fun showToastOneBtn(title: String, msg: String, btnTxt: String, btnListener : View.OnClickListener){
+    fun showToastOneBtn(
+        title: String,
+        msg: String,
+        btnTxt: String,
+        btnListener: View.OnClickListener
+    ) {
         val onebtn = ToastOneBtn(this@BaseActivity)
         onebtn.apply {
             setTitle(title)
@@ -59,9 +64,13 @@ open class BaseActivity<T : ViewDataBinding>(@LayoutRes val layoutRes: Int) : Ne
         onebtn.show()
     }
 
-    fun moveToMain(){
+    fun moveToMain() {
         val i = Intent(this, MainActivity::class.java)
         startActivity(i)
     }
 
+    fun moveToBestAct() {
+        val i = Intent(this, BestActivity::class.java)
+        startActivity(i)
+    }
 }
