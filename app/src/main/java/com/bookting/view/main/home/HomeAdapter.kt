@@ -3,12 +3,14 @@ package com.bookting.view.main.home
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bookting.data.GetBookData
 import com.bookting.data.HOME
 import com.bookting.data.MainConstants
 import com.bookting.databinding.HomeBadgeHolderBinding
+import com.bookting.databinding.HomeRecommendBinding
 import com.bookting.databinding.HomeTopHolderBinding
 
-class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class HomeAdapter(val listener: HomeListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     val itemList = mutableListOf<HOME>()
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -18,6 +20,9 @@ class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
             }
             is HomeBadge -> {
                 holder.bind(itemList[position] as HOME.Badge)
+            }
+            is HomeRecommend -> {
+                holder.bind(itemList[position] as HOME.Recomm)
             }
         }
     }
@@ -38,7 +43,13 @@ class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 return HomeBadge(
                     HomeBadgeHolderBinding.inflate(
                         LayoutInflater.from(parent.context), parent, false
-                    )
+                    ), listener
+                )
+            }
+
+            MainConstants.ViewHolder.RECOMM -> {
+                return HomeRecommend(
+                    HomeRecommendBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 )
             }
 
@@ -55,11 +66,16 @@ class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     fun addItems(item: HOME.Nick) {
+        this.itemList.clear()
         this.itemList.add(item)
-        notifyDataSetChanged()
     }
 
-    fun addBadge(item: HOME.Badge){
+    fun addBadge(item: HOME.Badge) {
+        this.itemList.add(item)
+
+    }
+
+    fun addRecomm(item: HOME.Recomm) {
         this.itemList.add(item)
         notifyDataSetChanged()
     }
@@ -76,10 +92,13 @@ class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                 return MainConstants.ViewHolder.HEADER
             }
 
+            is HOME.Recomm -> {
+                return MainConstants.ViewHolder.RECOMM
+            }
+
             else -> {
                 return -1
             }
         }
     }
-
 }
