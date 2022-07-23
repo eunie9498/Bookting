@@ -39,14 +39,5 @@ class NewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun getItemCount() = items.size
-//
-//    class diff : DiffUtil.ItemCallback<GetBookData>() {
-//        override fun areContentsTheSame(oldItem: GetBookData, newItem: GetBookData): Boolean {
-//            return oldItem.image_url == newItem.image_url
-//        }
-//
-//        override fun areItemsTheSame(oldItem: GetBookData, newItem: GetBookData): Boolean {
-//            return oldItem.id == newItem.id
-//        }
-//    }
+
 }

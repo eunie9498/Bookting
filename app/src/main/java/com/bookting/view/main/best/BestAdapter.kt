@@ -11,7 +11,6 @@ class BestAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     fun addItem(item: List<GetBookData>){
         items = item.toMutableList()
-        notifyDataSetChanged()
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
