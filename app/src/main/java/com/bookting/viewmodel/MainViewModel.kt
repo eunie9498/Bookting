@@ -16,17 +16,30 @@ class MainViewModel(val repository: MainRepository) : ViewModel() {
 
     private val _homeResponse = MutableLiveData<HomeResponse>()
 
-    val homeResponse : LiveData<HomeResponse>
+    val homeResponse: LiveData<HomeResponse>
         get() = _homeResponse
 
+    private val _bookData = MutableLiveData<List<GetBookData>>()
+
+    val bookData: LiveData<List<GetBookData>>
+        get() = _bookData
+
     fun getHome() = repository.run {
-        home().subscribeOn(Schedulers.io())
+        val BooktingHeader = mutableMapOf<String,String>()
+        BooktingHeader["access_token"] = "Bearer " + sharedHelper.getRefreshToken
+        home(BooktingHeader.toMap()).subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
-                if(it.result == MainConstants.SUCCESS){
+                if (it.result == MainConstants.SUCCESS) {
                     _homeResponse.postValue(it)
-                }
-                else{
+                } else {
+                    if(it.reason!!.contains("access_token")){
+                        login(LoginBody(
+                            email = "eunie@chaeking.co.kr",
+                            sharedHelper.newEncrypt("qqqq1111".toByteArray()),
+                            sharedHelper.getFbToken.substring(0, 32)
+                        ))
+                    }
                     Log.d("체크해보자", it.reason!!)
                 }
             }

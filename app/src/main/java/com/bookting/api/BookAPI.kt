@@ -7,7 +7,9 @@ import retrofit2.http.*
 interface BookAPI {
 
     @GET("home")
-    fun getHomeByUser(): Observable<HomeResponse>
+    fun getHomeByUser(
+        @HeaderMap header: Map<String, String>
+    ): Observable<HomeResponse>
 
     @GET("books/{book_id}")
     fun getBookDetails(): Observable<GetBookDetailResponse>
@@ -15,7 +17,7 @@ interface BookAPI {
     @POST("auth/join")
     fun joinUser(@Body body: JoinBody): Observable<ResultResponse>
 
-    @POST("auth/login")
+    @POST("auth/token")
     fun login(@Body body: LoginBody): Observable<LoginResponse>
 
     @GET("tags")
