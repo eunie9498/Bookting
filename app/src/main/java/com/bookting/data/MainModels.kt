@@ -45,6 +45,11 @@ sealed class HOME {
     object Badge : HOME()
 
     @Parcelize
+    data class Recomm(
+        val data: List<GetBookData>? = null
+    ) : Parcelable, HOME()
+
+    @Parcelize
     data class HomeGraph(
         var name: String,
         var amt: Int

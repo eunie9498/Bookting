@@ -24,6 +24,7 @@ object MainConstants {
         val ITEM1 = 2
         val ITEM2 = 3
         val GRAPH = 10
+        val RECOMM = 11
     }
 
 }
