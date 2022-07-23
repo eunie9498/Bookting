@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <attr name="setTxt" format="string"/>
-    <attr name="setEmoji" format="string"/>
+    <attr name="setTxt" format="string" />
+    <attr name="setEmoji" format="string" />
 
     <declare-styleable name="InputTxt">
-        <attr name="android:inputType"/>
+        <attr name="android:inputType" />
     </declare-styleable>
 
     <declare-styleable name="AppBarCenter">
-        <attr name="setTxt"/>
+        <attr name="setTxt" />
     </declare-styleable>
 
     <declare-styleable name="TabItem">
-        <attr name="setTxt"/>
-        <attr name="tabBg" format="reference"/>
+        <attr name="setTxt" />
+        <attr name="tabBg" format="reference" />
     </declare-styleable>
 
     <declare-styleable name="MainBadge">
-        <attr name="setTxt"/>
-        <attr name="setEmoji"/>
+        <attr name="setTxt" />
+        <attr name="setEmoji" />
+    </declare-styleable>
+
+    <declare-styleable name="BookListItem">
+        <attr name="setName" format="string" />
+        <attr name="setAuthor" format="string" />
+        <attr name="setPublisher" format="string" />
     </declare-styleable>
 </resources>
