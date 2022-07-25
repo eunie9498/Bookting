@@ -19,6 +19,10 @@
     <string name="search_book">도서검색</string>
     <string name="search_book_emoji">&#128269;</string>
 
+
+    <string name="join_err_title">회원가입 실패</string>
+    <string name="join_err_msg">회원가입에 실패했습니다.\n잠시 후 시도해주세요</string>
+
     <!--Tab-->
     <string name="tab_home">홈</string>
     <string name="tab_list">책장</string>

@@ -39,9 +39,8 @@ class JoinActivity : BaseActivity<ActivityJoinBinding>(R.layout.activity_join) {
             email = idField.getEt(),
             nickname = nickField.getEt(),
             password = sharedHelper.newEncrypt(pwField.getEt().toByteArray()),
-            secret_key = sharedHelper.getFbToken.substring(0, 32),
-            sex
+            secret_key = sharedHelper.getFbToken.substring(0, 32), sex
         )
-        viewModel.join(this@JoinActivity, body)
+        viewModel.join(body)
     }
 }

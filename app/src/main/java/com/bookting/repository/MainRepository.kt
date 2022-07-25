@@ -35,20 +35,7 @@ class MainRepository(context: Context) {
         component.inject(this)
     }
 
-    fun join(context: Context, body: JoinBody) {
-        api.run {
-            joinUser(body)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    if (it.result == MainConstants.SUCCESS) {
-                        showToast(context, "회원가입 완료")
-                    } else {
-                        Log.d("체크해보자", it.reason ?: "")
-                    }
-                }
-        }
-    }
+    fun join(body: JoinBody) = api.joinUser(body)
 
     fun home(header: Map<String, String>) = api.getHomeByUser(header)
 
@@ -58,4 +45,5 @@ class MainRepository(context: Context) {
 
     fun newBooks() = api.getNewBook()
 
+    fun getBookDetails(bookId: Int) = api.getBookDetails(bookId)
 }

@@ -12,6 +12,9 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class MainViewModel(val repository: MainRepository) : ViewModel() {
 
+    val joinResponse = MutableLiveData<ResultResponse>()
+    private val _joinResponse = MutableLiveData<ResultResponse>()
+
     val loginResponse = MutableLiveData<LoginResponse>()
 
     private val _homeResponse = MutableLiveData<HomeResponse>()
@@ -48,7 +51,20 @@ class MainViewModel(val repository: MainRepository) : ViewModel() {
             }
     }
 
-    fun join(context: Context, body: JoinBody) = repository.join(context, body)
+    fun join(body: JoinBody) {
+        repository.run {
+            join(body)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    if (it.result == MainConstants.SUCCESS) {
+                        _joinResponse.postValue(it)
+                    } else {
+                        Log.d("체크해보자", it.reason ?: "")
+                    }
+                }
+        }
+    }
 
     fun bestSeller() {
         repository.run {
