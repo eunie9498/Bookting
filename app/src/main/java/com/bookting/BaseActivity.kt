@@ -79,4 +79,20 @@ open class BaseActivity<T : ViewDataBinding>(@LayoutRes val layoutRes: Int) : Ne
         val i = Intent(this, NewActivity::class.java)
         startActivity(i)
     }
+
+    fun showBtnOneDlg(
+        title: String,
+        msg: String,
+        btnTxt: String,
+        listener: View.OnClickListener? = null
+    ) {
+        val dlg = DlgOneBtn(this)
+        dlg.apply {
+            setTitle(title)
+            setMsg(msg)
+            setListener(btnTxt, listener?:null)
+            show()
+        }
+
+    }
 }
