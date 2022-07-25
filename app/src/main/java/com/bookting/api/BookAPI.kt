@@ -12,7 +12,7 @@ interface BookAPI {
     ): Observable<HomeResponse>
 
     @GET("books/{book_id}")
-    fun getBookDetails(): Observable<GetBookDetailResponse>
+    fun getBookDetails(book_id: Int): Observable<GetBookDetailResponse>
 
     @POST("auth/join")
     fun joinUser(@Body body: JoinBody): Observable<ResultResponse>
