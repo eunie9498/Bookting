@@ -21,7 +21,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
 
         viewModel.homeResponse.observe(requireActivity()) {
             if (it.result == MainConstants.SUCCESS) {
-                (recyclerView.adapter as HomeAdapter).addItems(HOME.Nick("Hi Kong :) "))
+                (recyclerView.adapter as HomeAdapter).addItems(HOME.Nick(it.data.nickname))
                 (recyclerView.adapter as HomeAdapter).addBadge(HOME.Badge)
             }
         }

@@ -20,7 +20,8 @@ data class HomeResponse(
 @Parcelize
 data class HomeData(
     var best_seller: List<HomeBestSeller>,
-    var book_analysis: HomeBookContents
+    var book_analysis: HomeBookContents,
+    var nickname: String? = ""
 ) : Parcelable
 
 @Parcelize
