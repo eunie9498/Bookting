@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bookting.data.*
 import com.bookting.repository.MainRepository
+import com.bookting.utils.showToast
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
@@ -27,25 +28,22 @@ class MainViewModel(val repository: MainRepository) : ViewModel() {
     val bookData: LiveData<List<GetBookData>>
         get() = _bookData
 
+    val detailData: LiveData<BookDetailItem>
+        get() = _detailData
+
+    private val _detailData = MutableLiveData<BookDetailItem>()
+
 
     fun getHome() = repository.run {
         val BooktingHeader = mutableMapOf<String, String>()
-        BooktingHeader["access_token"] = "Bearer " + sharedHelper.getRefreshToken
+        BooktingHeader["access_token"] = "Bearer " + sharedHelper.getAccessToken
+
         home(BooktingHeader.toMap()).subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 if (it.result == MainConstants.SUCCESS) {
                     _homeResponse.postValue(it)
                 } else {
-                    if (it.reason!!.contains("access_token")) {
-                        login(
-                            LoginBody(
-                                email = "eunie@chaeking.co.kr",
-                                sharedHelper.newEncrypt("qqqq1111".toByteArray()),
-                                sharedHelper.getFbToken.substring(0, 32)
-                            )
-                        )
-                    }
                     Log.d("체크해보자", it.reason!!)
                 }
             }
@@ -115,6 +113,23 @@ class MainViewModel(val repository: MainRepository) : ViewModel() {
                             )
                             loginResponse.postValue(it)
                         }
+                    }
+                }
+        }
+    }
+
+    fun getBookDetail(bookId: Int) {
+        val BooktingHeader = mutableMapOf<String, String>()
+        BooktingHeader["access_token"] = "Bearer " + repository.sharedHelper.getAccessToken
+
+
+        repository.run {
+            getBookDetails(BooktingHeader.toMap(), bookId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    if (it.result == MainConstants.SUCCESS) {
+                        _detailData.postValue(it.data!!)
                     } else {
                         Log.d("체크해보자", it.reason!!)
                     }

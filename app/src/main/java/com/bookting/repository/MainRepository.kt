@@ -45,5 +45,6 @@ class MainRepository(context: Context) {
 
     fun newBooks() = api.getNewBook()
 
-    fun getBookDetails(bookId: Int) = api.getBookDetails(bookId)
+    fun getBookDetails(header: Map<String, String>, bookId: Int) =
+        api.getBookDetails(header, bookId)
 }
