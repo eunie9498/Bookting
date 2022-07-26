@@ -5,4 +5,5 @@
     <dimen name="dlg_one_btn_width">255dp</dimen>
     <dimen name="dlg_one_btn_height">200dp</dimen>
     <dimen name="dlg_top_margin">20dp</dimen>
+    <dimen name="detail_margin">30dp</dimen>
 </resources>
