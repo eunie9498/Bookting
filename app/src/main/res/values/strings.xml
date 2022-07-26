@@ -19,9 +19,15 @@
     <string name="search_book">도서검색</string>
     <string name="search_book_emoji">&#128269;</string>
 
+    <!--err-->
+    <string name="login_err_title">로그인 실패</string>
+    <string name="login_err_msg_expire">토큰이 만료되어\n로그인 화면으로 이동합니다.</string>
+    <string name="login_err_msg">아이디 혹은 비밀번호를 확인해주세요</string>
 
     <string name="join_err_title">회원가입 실패</string>
     <string name="join_err_msg">회원가입에 실패했습니다.\n잠시 후 시도해주세요</string>
+
+    
 
     <!--Tab-->
     <string name="tab_home">홈</string>
@@ -36,7 +42,7 @@
     <string name="banner_record_more">더 많은 컨텐츠를 위해\n읽었던 책을 기록해주세요</string>
 
     <string name="home_recommend">이런 책도\n읽어보셨나요?</string>
-    
+
     <string name="login_success">로그인에 성공하였습니다</string>
     <string name="login_fail">로그인에 실패했습니다</string>
 

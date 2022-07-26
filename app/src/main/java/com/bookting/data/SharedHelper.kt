@@ -28,7 +28,7 @@ class SharedHelper(context: Context) {
     }
 
     val getFbToken: String
-    get() = sharedPreferences.getString(MainConstants.Shared.FB_TOKEN, "")?:""
+        get() = sharedPreferences.getString(MainConstants.Shared.FB_TOKEN, "") ?: ""
 
     val getAccessToken: String
         get() = sharedPreferences.getString(MainConstants.Shared.ACCESS_TOKEN, "") ?: ""

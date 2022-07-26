@@ -7,6 +7,7 @@ import com.bookting.R
 import com.bookting.data.HOME
 import com.bookting.data.MainConstants
 import com.bookting.data.HOME.Recomm
+import com.bookting.data.LoginBody
 import com.bookting.databinding.FragmentHomeBinding
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), HomeListener {
@@ -17,18 +18,22 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
         recyclerView.adapter = HomeAdapter(this@HomeFragment)
 
         viewModel.getHome()
-        viewModel.bestSeller()
 
         viewModel.homeResponse.observe(requireActivity()) {
             if (it.result == MainConstants.SUCCESS) {
                 (recyclerView.adapter as HomeAdapter).addItems(HOME.Nick(it.data.nickname))
                 (recyclerView.adapter as HomeAdapter).addBadge(HOME.Badge)
+                (recyclerView.adapter as HomeAdapter).addRecomm(Recomm(it.data.best_seller))
+            } else {
+                if (it.reason!!.contains("access_token")) {
+                    (activity as BaseActivity<*>).showBtnOneDlg(
+                        getString(R.string.login_err_title),
+                        getString(R.string.login_err_msg_expire), getString(R.string.ok)
+                    )
+                }
             }
         }
 
-        viewModel.bookData.observe(requireActivity()) {
-            (recyclerView.adapter as HomeAdapter).addRecomm(HOME.Recomm(it))
-        }
     }
 
     override fun onBest() {

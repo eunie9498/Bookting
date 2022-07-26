@@ -9,9 +9,10 @@ import com.bookting.data.MainConstants
 import com.bookting.databinding.HomeBadgeHolderBinding
 import com.bookting.databinding.HomeRecommendBinding
 import com.bookting.databinding.HomeTopHolderBinding
+import java.lang.Exception
 
 class HomeAdapter(val listener: HomeListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-    val itemList = mutableListOf<HOME>()
+    private val itemList = mutableListOf<HOME>()
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
@@ -82,23 +83,20 @@ class HomeAdapter(val listener: HomeListener) : RecyclerView.Adapter<RecyclerVie
 
     override fun getItemCount() = itemList.size
 
-    override fun getItemViewType(position: Int): Int {
-        when (itemList[position]) {
-            is HOME.Nick -> {
-                return MainConstants.ViewHolder.TOP
-            }
+    override fun getItemViewType(position: Int): Int = when (itemList[position]) {
+        is HOME.Nick -> {
+             MainConstants.ViewHolder.TOP
+        }
 
-            is HOME.Badge -> {
-                return MainConstants.ViewHolder.HEADER
-            }
+        is HOME.Badge -> {
+             MainConstants.ViewHolder.HEADER
+        }
 
-            is HOME.Recomm -> {
-                return MainConstants.ViewHolder.RECOMM
-            }
-
-            else -> {
-                return -1
-            }
+        is HOME.Recomm -> {
+             MainConstants.ViewHolder.RECOMM
+        }
+        else ->{
+            throw Exception("ViewType Err")
         }
     }
 }

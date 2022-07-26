@@ -53,7 +53,7 @@ sealed class HOME {
 
     @Parcelize
     data class Recomm(
-        val data: List<GetBookData>? = null
+        val data: List<HomeBestSeller>? = null
     ) : Parcelable, HOME()
 }
 
