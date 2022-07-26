@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    android:installLocation="preferExternal"
-    package="com.bookting">
+    package="com.bookting"
+    android:installLocation="preferExternal">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <application
@@ -25,24 +25,34 @@
             android:name=".view.start.JoinActivity"
             android:exported="false" />
 
-        <activity android:name=".view.main.NetworkActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".view.main.NetworkActivity"
+            android:exported="false" />
 
-        <activity android:name=".view.start.LoginActivity"
-            android:noHistory="true"
-            android:exported="false"/>
+        <activity
+            android:name=".view.start.LoginActivity"
+            android:exported="false"
+            android:noHistory="true" />
 
-        <activity android:name=".view.main.home.HomeActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".view.main.home.HomeActivity"
+            android:exported="false" />
 
-        <activity android:name=".view.main.MainActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".view.main.MainActivity"
+            android:exported="false" />
 
-        <activity android:name=".view.main.best.BestActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".view.main.best.BestActivity"
+            android:exported="false" />
 
-        <activity android:name=".view.main.new.NewActivity"
-            android:exported="false"/>
+        <activity
+            android:name=".view.main.new.NewActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".view.detail.DetailActivity"
+            android:exported="false" />
 
         <service
             android:name=".FbMessaging"

@@ -1,5 +1,6 @@
 package com.bookting
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
@@ -9,8 +10,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import com.bookting.data.MainConstants
 import com.bookting.repository.MainRepository
+import com.bookting.ui.DlgOneBtn
 import com.bookting.ui.ToastOneBtn
+import com.bookting.view.detail.DetailActivity
 import com.bookting.view.main.MainActivity
 import com.bookting.view.main.NetworkActivity
 import com.bookting.view.main.best.BestActivity
@@ -75,8 +79,16 @@ open class BaseActivity<T : ViewDataBinding>(@LayoutRes val layoutRes: Int) : Ne
         startActivity(i)
     }
 
-    fun moveToNew(){
+    fun moveToNew() {
         val i = Intent(this, NewActivity::class.java)
+        startActivity(i)
+    }
+
+    fun moveToDetail(bookId: Int) {
+        val i = Intent(this, DetailActivity::class.java)
+        val bundle = Bundle()
+        bundle.putInt(MainConstants.BUNDLE_KEY.BOOK_ID, bookId)
+        i.putExtras(bundle)
         startActivity(i)
     }
 

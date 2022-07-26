@@ -135,7 +135,7 @@ data class GetBookData(
 
 @Parcelize
 data class BookDetailItem(
-    val author: List<String>,
+    val authors: List<String>,
     val detail_info: String,
     val id: Int,
     val image_url: String,

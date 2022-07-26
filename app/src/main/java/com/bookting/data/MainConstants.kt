@@ -18,6 +18,10 @@ object MainConstants {
         val FB_TOKEN = "fb_token"
     }
 
+    object BUNDLE_KEY {
+        val BOOK_ID = "book_id"
+    }
+
     object ViewHolder {
         val TOP = 0
         val HEADER = 1
