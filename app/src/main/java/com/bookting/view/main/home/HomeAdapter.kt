@@ -50,6 +50,7 @@ class HomeAdapter(val listener: HomeListener) : RecyclerView.Adapter<RecyclerVie
 
             MainConstants.ViewHolder.RECOMM -> {
                 return HomeRecommend(
+                    listener,
                     HomeRecommendBinding.inflate(LayoutInflater.from(parent.context), parent, false)
                 )
             }
@@ -85,17 +86,17 @@ class HomeAdapter(val listener: HomeListener) : RecyclerView.Adapter<RecyclerVie
 
     override fun getItemViewType(position: Int): Int = when (itemList[position]) {
         is HOME.Nick -> {
-             MainConstants.ViewHolder.TOP
+            MainConstants.ViewHolder.TOP
         }
 
         is HOME.Badge -> {
-             MainConstants.ViewHolder.HEADER
+            MainConstants.ViewHolder.HEADER
         }
 
         is HOME.Recomm -> {
-             MainConstants.ViewHolder.RECOMM
+            MainConstants.ViewHolder.RECOMM
         }
-        else ->{
+        else -> {
             throw Exception("ViewType Err")
         }
     }

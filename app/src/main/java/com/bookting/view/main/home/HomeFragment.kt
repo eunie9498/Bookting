@@ -44,4 +44,8 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
         (requireActivity() as BaseActivity<*>).moveToNew()
     }
 
+    override fun onRecommend(bookId: Int) {
+        (requireActivity() as BaseActivity<*>).moveToDetail(bookId)
+    }
+
 }

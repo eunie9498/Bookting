@@ -5,17 +5,21 @@ import com.bookting.data.HOME
 import com.bookting.databinding.HomeRecommendBinding
 import com.bookting.ui.SingleBook
 
-class HomeRecommend(val binding: HomeRecommendBinding) : RecyclerView.ViewHolder(binding.root) {
+class HomeRecommend(val listener: HomeListener, val binding: HomeRecommendBinding) :
+    RecyclerView.ViewHolder(binding.root) {
     fun bind(item: HOME.Recomm) = with(binding) {
 
         val items = ArrayList<SingleBook>()
         items.clear()
-        
+
         val arr = item.data!!
-        arr.forEach {
+        arr.slice(0..2).forEach { best ->
             val single = SingleBook(root.context)
-            single.setBg(it.image_url?:"")
-            single.setTxt(it.name?:"")
+            single.setBg(best.image_url ?: "")
+            single.setTxt(best.name ?: "")
+            single.setOnClickListener {
+                listener.onRecommend(best.id ?: -1)
+            }
             items.add(single)
         }
 

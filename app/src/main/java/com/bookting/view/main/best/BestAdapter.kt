@@ -6,14 +6,14 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bookting.data.GetBookData
 import com.bookting.databinding.BestSellerItemBinding
 
-class BestAdapter(val listener: BestListener): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class BestAdapter(val listener: BestListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var items = mutableListOf<GetBookData>()
 
-    fun addItem(item: List<GetBookData>){
+    fun addItem(item: List<GetBookData>) {
         items = item.toMutableList()
     }
 
-    interface BestListener{
+    interface BestListener {
         fun onDetail(bookId: Int)
     }
 
@@ -36,9 +36,9 @@ class BestAdapter(val listener: BestListener): RecyclerView.Adapter<RecyclerView
         RecyclerView.ViewHolder(binding.root) {
         fun bind(item: GetBookData) {
             binding.item = item
-            binding.bookItem.setBg(item.image_url?:"")
+            binding.bookItem.setBg(item.image_url ?: "")
             binding.bookItem.setOnClickListener {
-                listener.onDetail(item.id?:-1)
+                listener.onDetail(item.id ?: -1)
             }
         }
     }

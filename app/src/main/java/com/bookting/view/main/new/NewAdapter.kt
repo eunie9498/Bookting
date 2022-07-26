@@ -8,12 +8,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bookting.data.GetBookData
 import com.bookting.databinding.NewBookItemBinding
 
-class NewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class NewAdapter(val listener: NewListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var items = mutableListOf<GetBookData>()
 
     fun addItem(arr: List<GetBookData>) {
         items = arr.toMutableList()
         notifyDataSetChanged()
+    }
+
+    interface NewListener {
+        fun onDetail(bookId: Int)
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -35,6 +39,9 @@ class NewAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         fun bind(item: GetBookData) {
             binding.item = item
             binding.bookItem.setBg(item.image_url ?: "")
+            binding.bookItem.setOnClickListener {
+                listener.onDetail(item.id ?: -1)
+            }
         }
     }
 
