@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="data"
+            type="com.bookting.data.BookDetailItem" />
+
+        <variable
+            name="author"
+            type="String" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.bookting.ui.AppBarEndTxt
+            android:id="@+id/appBar"
+            android:layout_width="0dp"
+            android:layout_height="56dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:setTxt="@string/add_book" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/appBar">
+
+            <ImageView
+                android:id="@+id/bookImg"
+                android:layout_width="100dp"
+                android:layout_height="130dp"
+                android:layout_marginStart="@dimen/detail_margin"
+                android:layout_marginTop="@dimen/detail_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                style="@style/Bold22"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/detail_margin"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="@dimen/detail_margin"
+                android:maxLines="2"
+                android:text="@{data.name}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/bookImg"
+                tools:text="title" />
+
+            <TextView
+                android:id="@+id/authors"
+                style="@style/Normal15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/detail_margin"
+                android:layout_marginTop="20dp"
+                android:text="@string/author"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+            <TextView
+                android:id="@+id/tvAuthors"
+                style="@style/Normal15"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="@dimen/detail_margin"
+                android:text="@{author}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/authors"
+                app:layout_constraintTop_toBottomOf="@id/tvTitle"
+                tools:text="공동저자가 있을수도" />
+
+            <TextView
+                android:id="@+id/publisher"
+                style="@style/Normal13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/detail_margin"
+                android:layout_marginTop="20dp"
+                android:text="@string/publisher"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvAuthors" />
+
+            <TextView
+                android:id="@+id/tvPublisher"
+                style="@style/Normal13"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="@dimen/detail_margin"
+                android:text="@{data.publisher}"
+                android:textColor="@color/grey700"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/publisher"
+                app:layout_constraintTop_toBottomOf="@id/tvAuthors"
+                tools:text="공동저자가 있을수도" />
+
+            <TextView
+                android:id="@+id/time"
+                style="@style/Normal13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/detail_margin"
+                android:layout_marginTop="15dp"
+                android:text="@string/publish_date"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvPublisher" />
+
+            <TextView
+                android:id="@+id/tvTime"
+                style="@style/Normal13"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="@dimen/detail_margin"
+                android:text="@{data.publication_date}"
+                android:textColor="@color/grey700"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/time"
+                app:layout_constraintTop_toBottomOf="@id/tvPublisher"
+                tools:text="공동저자가 있을수도" />
+
+            <TextView
+                android:id="@+id/isbn"
+                style="@style/Normal13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/detail_margin"
+                android:layout_marginTop="15dp"
+                android:text="@string/isbn"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvTime" />
+
+            <TextView
+                android:id="@+id/tvIsbn"
+                style="@style/Normal13"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="@dimen/detail_margin"
+                android:text="@{data.isbn?? ``}"
+                android:textColor="@color/grey700"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/isbn"
+                app:layout_constraintTop_toBottomOf="@id/tvTime"
+                tools:text="공동저자가 있을수도" />
+
+            <View
+                android:id="@+id/divider"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_marginStart="@dimen/detail_margin"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="@dimen/detail_margin"
+                android:background="@drawable/divider_2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvIsbn" />
+
+            <TextView
+                android:id="@+id/tvDetail"
+                style="@style/Normal15"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="30dp"
+                android:text="@string/detail_book_info"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/divider" />
+
+
+            <TextView
+                android:id="@+id/tvDetailInfo"
+                style="@style/Normal13"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="@dimen/detail_margin"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="@dimen/detail_margin"
+                android:layout_marginBottom="30dp"
+                android:ellipsize="end"
+                android:maxLines="8"
+                android:text="@{data.detail_info+`...`}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvDetail" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

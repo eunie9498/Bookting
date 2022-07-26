@@ -4,7 +4,7 @@ import com.bookting.BaseActivity
 import com.bookting.R
 import com.bookting.databinding.ActivityBestSellerBinding
 
-class BestActivity : BaseActivity<ActivityBestSellerBinding>(R.layout.activity_best_seller) {
+class BestActivity : BaseActivity<ActivityBestSellerBinding>(R.layout.activity_best_seller), BestAdapter.BestListener {
 
     override fun ActivityBestSellerBinding.onCreate() {
         binding.appBar.binding.btnBack.setOnClickListener {
@@ -12,8 +12,12 @@ class BestActivity : BaseActivity<ActivityBestSellerBinding>(R.layout.activity_b
         }
         viewModel.bestSeller()
         viewModel.bookData.observe(this@BestActivity) {
-            recyclerView.adapter = BestAdapter()
+            recyclerView.adapter = BestAdapter(this@BestActivity)
             (recyclerView.adapter as BestAdapter).addItem(it)
         }
+    }
+
+    override fun onDetail(bookId: Int) {
+        moveToDetail(bookId)
     }
 }
