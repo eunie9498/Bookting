@@ -40,6 +40,9 @@
     <color name="purple800">#4527a0</color>
     <color name="purple900">#311b92</color>
 
+    <color name="purple50_opa50">#80ede7f6</color>
+    <color name="purple600_opa50">#805e35b1</color>
+
     <color name="blue50">#e8eaf6</color>
     <color name="blue100">#c5cae9</color>
     <color name="blue200">#9fa8da</color>
@@ -50,6 +53,9 @@
     <color name="blue700">#303f9f</color>
     <color name="blue800">#283593</color>
     <color name="blue900">#2a237e</color>
+
+    <color name="blue50_opa50">#80e8eaf6</color>
+    <color name="blue600_opa50">#803949ab</color>
 
     <color name="red50">#ffebee</color>
     <color name="red100">#ffcdd2</color>

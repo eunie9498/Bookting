@@ -19,6 +19,10 @@
     <string name="search_book">도서검색</string>
     <string name="search_book_emoji">&#128269;</string>
 
+    <!--emoji-->
+    <string name="emoji_books">&#128218;</string>
+    <string name="emoji_eyes">&#128064;</string>
+
     <!--err-->
     <string name="login_err_title">로그인 실패</string>
     <string name="login_err_msg_expire">토큰이 만료되어\n로그인 화면으로 이동합니다.</string>
@@ -27,7 +31,6 @@
     <string name="join_err_title">회원가입 실패</string>
     <string name="join_err_msg">회원가입에 실패했습니다.\n잠시 후 시도해주세요</string>
 
-    
 
     <!--Tab-->
     <string name="tab_home">홈</string>
@@ -55,5 +58,10 @@
     <string name="publisher">출판사</string>
     <string name="author">저자</string>
     <string name="no_info">-</string>
+
+    <!--add Book-->
+    <string name="already_read">이미 읽은</string>
+    <string name="wish_read">읽고 싶은</string>
+
 
 </resources>
