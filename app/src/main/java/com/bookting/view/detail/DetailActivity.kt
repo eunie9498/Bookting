@@ -5,6 +5,7 @@ import com.bookting.R
 import com.bookting.data.MainConstants
 import com.bookting.databinding.ActivityBookDetailBinding
 import com.bookting.utils.setRoundImg
+import com.bookting.view.add.SelectReadFragment
 
 class DetailActivity : BaseActivity<ActivityBookDetailBinding>(R.layout.activity_book_detail) {
     var book_id = 0
@@ -15,7 +16,6 @@ class DetailActivity : BaseActivity<ActivityBookDetailBinding>(R.layout.activity
                 book_id = extra.getInt(MainConstants.BUNDLE_KEY.BOOK_ID)
             }
         }
-
         initView()
     }
 
@@ -30,6 +30,11 @@ class DetailActivity : BaseActivity<ActivityBookDetailBinding>(R.layout.activity
             binding.bookImg.setRoundImg(it.image_url)
             binding.author =
                 if (it.authors.isNotEmpty()) it.authors.joinToString { it } else getString(R.string.no_info)
+        }
+
+        appBar.appBarBinding.tvEnd.setOnClickListener {
+            val bottomAdd = SelectReadFragment()
+            bottomAdd.show(supportFragmentManager, bottomAdd.tag)
         }
     }
 }
