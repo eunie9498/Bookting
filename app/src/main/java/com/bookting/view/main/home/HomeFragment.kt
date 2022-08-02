@@ -21,9 +21,9 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
 
         viewModel.homeResponse.observe(requireActivity()) {
             if (it.result == MainConstants.SUCCESS) {
-                (recyclerView.adapter as HomeAdapter).addItems(HOME.Nick(it.data.nickname))
+                (recyclerView.adapter as HomeAdapter).addItems(HOME.Nick(it.data!!.nickname))
                 (recyclerView.adapter as HomeAdapter).addBadge(HOME.Badge)
-                (recyclerView.adapter as HomeAdapter).addRecomm(Recomm(it.data.best_seller))
+                (recyclerView.adapter as HomeAdapter).addRecomm(Recomm(it.data!!.best_seller))
             } else {
                 if (it.reason!!.contains("access_token")) {
                     (activity as BaseActivity<*>).showBtnOneDlg(

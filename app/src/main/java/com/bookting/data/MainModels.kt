@@ -14,7 +14,7 @@ data class Users(
 data class HomeResponse(
     var result: String? = "",
     var reason: String? = "",
-    var data: HomeData
+    var data: HomeData? = null
 ) : Parcelable
 
 @Parcelize

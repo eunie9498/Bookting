@@ -40,13 +40,13 @@ class MainViewModel(val repository: MainRepository) : ViewModel() {
 
         home(BooktingHeader.toMap()).subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                if (it.result == MainConstants.SUCCESS) {
-                    _homeResponse.postValue(it)
-                } else {
-                    Log.d("체크해보자", it.reason!!)
-                }
-            }
+            .subscribe(
+                { response ->
+                    _homeResponse.postValue(response)
+                }, { throwable ->
+                    _homeResponse.postValue(HomeResponse("fail", throwable.message ?: "", null))
+                })
+
     }
 
     fun join(body: JoinBody) {
