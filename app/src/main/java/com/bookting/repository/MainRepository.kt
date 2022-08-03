@@ -47,4 +47,6 @@ class MainRepository(context: Context) {
 
     fun getBookDetails(header: Map<String, String>, bookId: Int) =
         api.getBookDetails(header, bookId)
+
+    fun tags() = api.getTags()
 }

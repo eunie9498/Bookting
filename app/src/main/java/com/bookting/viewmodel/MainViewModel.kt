@@ -33,6 +33,10 @@ class MainViewModel(val repository: MainRepository) : ViewModel() {
 
     private val _detailData = MutableLiveData<BookDetailItem>()
 
+    val tagData: LiveData<List<TagItem>>
+        get() = _tagData
+
+    private val _tagData = MutableLiveData<List<TagItem>>()
 
     fun getHome() = repository.run {
         val BooktingHeader = mutableMapOf<String, String>()
@@ -132,6 +136,21 @@ class MainViewModel(val repository: MainRepository) : ViewModel() {
                         _detailData.postValue(it.data!!)
                     } else {
                         Log.d("체크해보자", it.reason!!)
+                    }
+                }
+        }
+    }
+
+    fun tag() {
+        repository.run {
+            tags()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    if (it.result == MainConstants.SUCCESS) {
+                        it.data?.let { arr ->
+                            _tagData.postValue(arr)
+                        }
                     }
                 }
         }
