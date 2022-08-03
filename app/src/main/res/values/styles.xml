@@ -72,8 +72,10 @@
     </style>
 
     <style name="BottomSheetDialog" parent="Theme.Design.Light.BottomSheetDialog">
-        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
         <item name="bottomSheetStyle">@style/BooktingBottom</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
     </style>
 
     <style name="BooktingBottom" parent="Widget.Design.BottomSheet.Modal">
@@ -83,6 +85,23 @@
     <style name="DialogAnimation">
         <item name="android:windowEnterAnimation">@anim/bottom_to_top</item>
         <item name="android:windowExitAnimation">@anim/top_to_bottom</item>
+    </style>
+
+    <!--res-->
+    <style name="BtnRadius100Purple100" parent="Bold16">
+        <item name="android:background">@drawable/radius100_purple100</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/purple600</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/btn_height</item>
+    </style>
+
+    <style name="BtnRadius100Blue100" parent="Bold16">
+        <item name="android:background">@drawable/radius100_blue100</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textColor">@color/blue600</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/btn_height</item>
     </style>
 
 </resources>
