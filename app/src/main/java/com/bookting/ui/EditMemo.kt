@@ -13,4 +13,5 @@ class EditMemo constructor(
 
     val etMemoBinding = EditMemoBinding.inflate(LayoutInflater.from(context), this, true)
 
+    fun getMemo() = etMemoBinding.etMemo.text.toString()
 }

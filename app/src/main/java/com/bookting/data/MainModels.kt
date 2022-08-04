@@ -19,7 +19,7 @@ data class HomeResponse(
 
 @Parcelize
 data class HomeData(
-    var best_seller: List<HomeBestSeller>,
+    var best_seller: List<HomeBestSeller>?=null,
     var book_analysis: HomeBookContents,
     var nickname: String? = ""
 ) : Parcelable
@@ -156,7 +156,8 @@ data class TagResponse(
 @Parcelize
 data class TagItem(
     var id: Int,
-    var item: String
+    var name: String,
+    var selected: Boolean? = false
 ) : Parcelable
 
 @Parcelize

@@ -19,6 +19,10 @@
     <string name="search_book">도서검색</string>
     <string name="search_book_emoji">&#128269;</string>
 
+    <!--msg-->
+    <string name="success_add_msg">성공적으로 추가했습니다</string>
+
+
     <!--emoji-->
     <string name="emoji_books">&#128218;</string>
     <string name="emoji_eyes">&#128064;</string>
@@ -30,6 +34,7 @@
 
     <string name="join_err_title">회원가입 실패</string>
     <string name="join_err_msg">회원가입에 실패했습니다.\n잠시 후 시도해주세요</string>
+    <string name="add_book_err_msg">추가에 실패했습니다</string>
 
 
     <!--Tab-->
@@ -63,6 +68,6 @@
     <!--add Book-->
     <string name="already_read">이미 읽은</string>
     <string name="wish_read">읽고 싶은</string>
-
+    <string name="select_one_more_tag">1가지 이상의 태그를 선택해주세요</string>
 
 </resources>
