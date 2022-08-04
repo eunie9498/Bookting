@@ -1,17 +1,24 @@
 package com.bookting.view.add
 
+import android.content.Intent
 import android.os.Bundle
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.bookting.R
+import com.bookting.data.MainConstants
 import com.bookting.databinding.SelectReadFragmentBinding
+import com.bookting.viewmodel.MainViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import java.util.logging.Handler
 
-class SelectReadFragment : BottomSheetDialogFragment() {
+class SelectReadFragment(val book_id: Int) : BottomSheetDialogFragment() {
     lateinit var binding: SelectReadFragmentBinding
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -28,10 +35,8 @@ class SelectReadFragment : BottomSheetDialogFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.wish.isSelected = false
         binding.fragment = this@SelectReadFragment
         dialog!!.window!!.attributes.windowAnimations = R.style.DialogAnimation
-        binding.already.isSelected = true
     }
 
 
@@ -40,15 +45,30 @@ class SelectReadFragment : BottomSheetDialogFragment() {
             binding.wish -> {
                 binding.wish.isSelected = !binding.wish.isSelected
                 binding.already.isSelected = !binding.wish.isSelected
+                if (binding.wish.isSelected) {
+                    val bottomAdd = WishReadFragment()
+                    bottomAdd.show(requireActivity().supportFragmentManager, bottomAdd.tag)
+                    val h = android.os.Handler(Looper.getMainLooper())
+                    h.postDelayed({
+                        this@SelectReadFragment.dismiss()
+                    }, 1000)
+                }
             }
             else -> {
                 binding.already.isSelected = !binding.already.isSelected
                 binding.wish.isSelected = !binding.already.isSelected
+                if (binding.already.isSelected) {
+                    val i = Intent(requireActivity(), AlreadyReadActivity::class.java)
+                    val b = Bundle()
+                    b.putInt(MainConstants.BUNDLE_KEY.BOOK_ID, book_id)
+                    i.putExtras(b)
+                    startActivity(i)
+                }
             }
         }
     }
 
     fun moveBack() {
-       
+
     }
 }
