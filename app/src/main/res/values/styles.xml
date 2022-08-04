@@ -87,6 +87,10 @@
         <item name="android:windowExitAnimation">@anim/top_to_bottom</item>
     </style>
 
+    <style name="CustomBlueRating" parent="Widget.AppCompat.RatingBar">
+        <item name="android:progressDrawable">@drawable/fav_blue_selector</item>
+    </style>
+
     <!--res-->
     <style name="BtnRadius100Purple100" parent="Bold16">
         <item name="android:background">@drawable/radius100_purple100</item>
