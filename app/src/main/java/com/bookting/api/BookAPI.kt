@@ -36,7 +36,7 @@ interface BookAPI {
 
     //읽고싶은책
     @POST("book-memories/wish")
-    fun wishBook(
+    fun addWishBook(
         @Body body: WishBookData
     ): Observable<ResultResponse>
 

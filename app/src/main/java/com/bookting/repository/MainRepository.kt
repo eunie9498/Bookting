@@ -51,4 +51,6 @@ class MainRepository(context: Context) {
     fun tags() = api.getTags()
 
     fun addAlreadyBook(body: AlreadyBookItem) = api.AddAlreadyRead(body)
+
+    fun addWishBook(body: WishBookData) = api.addWishBook(body)
 }

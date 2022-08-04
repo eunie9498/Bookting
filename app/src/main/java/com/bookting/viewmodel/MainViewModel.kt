@@ -43,6 +43,10 @@ class MainViewModel(val repository: MainRepository) : ViewModel() {
 
     private val _alreadyResponseData = MutableLiveData<ResultResponse>()
 
+    val addWishResponse: LiveData<ResultResponse>
+        get() = _wishResponseData
+    private val _wishResponseData = MutableLiveData<ResultResponse>()
+
     fun getHome() = repository.run {
         val BooktingHeader = mutableMapOf<String, String>()
         BooktingHeader["access_token"] = "Bearer " + sharedHelper.getAccessToken
@@ -160,6 +164,7 @@ class MainViewModel(val repository: MainRepository) : ViewModel() {
                 }
         }
     }
+
     fun addAlreadyBook(body: AlreadyBookItem) {
         repository.run {
             addAlreadyBook(body)
@@ -167,6 +172,17 @@ class MainViewModel(val repository: MainRepository) : ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     _alreadyResponseData.postValue(it)
+                }
+        }
+    }
+
+    fun addWishBook(body: WishBookData) {
+        repository.run {
+            addWishBook(body)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    _wishResponseData.postValue(it)
                 }
         }
     }
