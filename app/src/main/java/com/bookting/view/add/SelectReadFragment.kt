@@ -16,7 +16,7 @@ import com.bookting.viewmodel.MainViewModel
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import java.util.logging.Handler
 
-class SelectReadFragment(val book_id: Int) : BottomSheetDialogFragment() {
+class SelectReadFragment(val book_id: Int, val viewModel: MainViewModel) : BottomSheetDialogFragment() {
     lateinit var binding: SelectReadFragmentBinding
 
 
@@ -46,12 +46,8 @@ class SelectReadFragment(val book_id: Int) : BottomSheetDialogFragment() {
                 binding.wish.isSelected = !binding.wish.isSelected
                 binding.already.isSelected = !binding.wish.isSelected
                 if (binding.wish.isSelected) {
-                    val bottomAdd = WishReadFragment()
+                    val bottomAdd = WishReadFragment(book_id, viewModel)
                     bottomAdd.show(requireActivity().supportFragmentManager, bottomAdd.tag)
-                    val h = android.os.Handler(Looper.getMainLooper())
-                    h.postDelayed({
-                        this@SelectReadFragment.dismiss()
-                    }, 1000)
                 }
             }
             else -> {

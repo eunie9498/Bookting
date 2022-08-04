@@ -33,7 +33,7 @@ class DetailActivity : BaseActivity<ActivityBookDetailBinding>(R.layout.activity
         }
 
         appBar.appBarBinding.tvEnd.setOnClickListener {
-            val bottomAdd = SelectReadFragment(book_id)
+            val bottomAdd = SelectReadFragment(book_id, viewModel)
             supportFragmentManager.beginTransaction().add(bottomAdd, bottomAdd.tag).commit()
         }
     }
