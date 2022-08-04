@@ -59,7 +59,7 @@ interface BookAPI {
 
     //이미 읽은
     @POST("book-memories/complete")
-    fun SetAlreadyRead(
+    fun AddAlreadyRead(
         @Body body: AlreadyBookItem
     ): Observable<ResultResponse>
 

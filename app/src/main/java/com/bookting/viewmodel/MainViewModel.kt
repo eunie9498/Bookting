@@ -38,6 +38,11 @@ class MainViewModel(val repository: MainRepository) : ViewModel() {
 
     private val _tagData = MutableLiveData<List<TagItem>>()
 
+    val addAlreadyResponse: LiveData<ResultResponse>
+        get() = _alreadyResponseData
+
+    private val _alreadyResponseData = MutableLiveData<ResultResponse>()
+
     fun getHome() = repository.run {
         val BooktingHeader = mutableMapOf<String, String>()
         BooktingHeader["access_token"] = "Bearer " + sharedHelper.getAccessToken
@@ -152,6 +157,16 @@ class MainViewModel(val repository: MainRepository) : ViewModel() {
                             _tagData.postValue(arr)
                         }
                     }
+                }
+        }
+    }
+    fun addAlreadyBook(body: AlreadyBookItem) {
+        repository.run {
+            addAlreadyBook(body)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    _alreadyResponseData.postValue(it)
                 }
         }
     }
