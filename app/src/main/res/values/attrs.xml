@@ -30,4 +30,8 @@
         <attr name="setAuthor" format="string" />
         <attr name="setPublisher" format="string" />
     </declare-styleable>
+
+    <declare-styleable name="ArrowItem">
+        <attr name="setTxt" />
+    </declare-styleable>
 </resources>

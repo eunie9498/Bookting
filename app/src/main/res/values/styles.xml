@@ -108,4 +108,9 @@
         <item name="android:layout_height">@dimen/btn_height</item>
     </style>
 
+    <style name="HeaderSetting" parent="Bold18">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:gravity">left|center</item>
+    </style>
 </resources>
