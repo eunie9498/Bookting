@@ -27,43 +27,27 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:id="@+id/linear"
-            android:layout_width="0dp"
+        <com.bookting.ui.EditMemo
+            android:id="@+id/etMemo"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="30dp"
-            android:orientation="horizontal"
+            android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btnClose">
-
-
-            <com.bookting.ui.EditMemo
-                android:id="@+id/memo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginEnd="20dp"
-                android:background="@drawable/radius10_grey100"
-                android:minHeight="100dp" />
-        </LinearLayout>
+            app:layout_constraintTop_toBottomOf="@id/btnClose" />
 
         <TextView
-            android:id="@+id/btnAdd"
-            android:layout_width="match_parent"
+            style="@style/BtnRadius100Purple100"
+            android:layout_width="0dp"
             android:layout_height="48dp"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="16dp"
             android:layout_marginEnd="20dp"
-            android:background="@drawable/radius10_purple_selector"
-            android:gravity="center"
+            android:layout_marginBottom="16dp"
             android:text="@string/add_book"
-            android:textColor="@color/purple900"
-            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/linear" />
-
+            app:layout_constraintTop_toBottomOf="@id/etMemo" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

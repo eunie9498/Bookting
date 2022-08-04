@@ -16,7 +16,7 @@
             android:layout_marginEnd="20dp"
             style="@style/Normal15"
             android:layout_width="match_parent"
-            android:layout_height="120dp"
+            android:layout_height="130dp"
             android:paddingStart="16dp"
             android:paddingTop="16dp"
             android:background="@drawable/radius10_grey100"
