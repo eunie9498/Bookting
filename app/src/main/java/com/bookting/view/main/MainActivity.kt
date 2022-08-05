@@ -6,6 +6,7 @@ import com.bookting.R
 import com.bookting.databinding.ActivityMainBinding
 import com.bookting.ui.TabItem
 import com.bookting.view.main.home.HomeFragment
+import com.bookting.view.setting.SettingFragment
 
 
 class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
@@ -15,9 +16,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
     override fun ActivityMainBinding.onCreate() {
         binding.activity = this@MainActivity
         tabs = arrayOf(binding.tabHome, binding.tabList, binding.tabSearch, binding.tabSetting)
-
-        val fragment = HomeFragment()
-        supportFragmentManager.beginTransaction().replace(R.id.frame, fragment).commit()
+        tabClick(binding.tabHome)
     }
 
     fun tabClick(v: TabItem) = with(binding) {
@@ -37,7 +36,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
             }
             tabSetting -> {
-
+                val fragment = SettingFragment()
+                supportFragmentManager.beginTransaction().replace(R.id.frame, fragment).commit()
             }
             else -> {
 

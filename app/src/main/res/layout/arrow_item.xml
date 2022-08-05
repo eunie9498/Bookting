@@ -13,7 +13,7 @@
 
         <TextView
             android:id="@+id/tvTitle"
-            style="@style/Normal15"
+            style="@style/Normal16"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -24,8 +24,8 @@
 
         <ImageView
             android:id="@+id/btnNext"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/arrow_next_24"
             app:layout_constraintBottom_toBottomOf="parent"
