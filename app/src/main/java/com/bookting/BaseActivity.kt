@@ -20,10 +20,12 @@ import com.bookting.view.main.NetworkActivity
 import com.bookting.view.main.best.BestActivity
 import com.bookting.view.main.new.NewActivity
 import com.bookting.viewmodel.MainViewModel
+import com.bookting.viewmodel.UserViewModel
 
 open class BaseActivity<T : ViewDataBinding>(@LayoutRes val layoutRes: Int) : NetworkActivity() {
 
     lateinit var binding: T
+    lateinit var userViewModel: UserViewModel
     lateinit var viewModel: MainViewModel
     lateinit var repository: MainRepository
 
@@ -34,16 +36,20 @@ open class BaseActivity<T : ViewDataBinding>(@LayoutRes val layoutRes: Int) : Ne
         binding = DataBindingUtil.setContentView(this, layoutRes)
         val factory = ViewModelFactory(MainRepository(this))
         viewModel = ViewModelProvider(this, factory).get(MainViewModel::class.java)
+        userViewModel = ViewModelProvider(this, factory).get(UserViewModel::class.java)
         repository = MainRepository(this)
 
         binding.onCreate()
     }
 
     inner class ViewModelFactory(val repository: MainRepository) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return modelClass.getConstructor(MainRepository::class.java).newInstance(repository)
-        }
+        override fun <T : ViewModel> create(modelClass: Class<T>): T = when(modelClass){
+            MainViewModel::class.java -> MainViewModel(MainRepository(this@BaseActivity))
+            UserViewModel::class.java -> UserViewModel(MainRepository(this@BaseActivity))
+            else -> throw IllegalArgumentException("Unknown ViewModel class")
+        } as T
     }
+
 
     open fun T.onCreate() = Unit
 

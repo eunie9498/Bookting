@@ -13,11 +13,13 @@ import androidx.lifecycle.ViewModelProvider
 import com.bookting.data.SharedHelper
 import com.bookting.repository.MainRepository
 import com.bookting.viewmodel.MainViewModel
+import com.bookting.viewmodel.UserViewModel
 
 open class BaseFragment<T : ViewDataBinding>(@LayoutRes val layoutRes: Int) : Fragment() {
 
     lateinit var binding: T
     lateinit var repository: MainRepository
+    lateinit var userViewModel: UserViewModel
     lateinit var sharedHelper: SharedHelper
     lateinit var viewModel: MainViewModel
 
@@ -37,15 +39,18 @@ open class BaseFragment<T : ViewDataBinding>(@LayoutRes val layoutRes: Int) : Fr
 
         val factory = ViewModelFactory(MainRepository(requireContext()))
         viewModel = ViewModelProvider(requireActivity(), factory).get(MainViewModel::class.java)
-
+        userViewModel = ViewModelProvider(requireActivity(), factory).get(UserViewModel::class.java)
         binding.initView()
     }
 
     inner class ViewModelFactory(val repository: MainRepository) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T {
-            return modelClass.getConstructor(MainRepository::class.java).newInstance(repository)
-        }
+        override fun <T : ViewModel> create(modelClass: Class<T>): T = when(modelClass){
+            MainViewModel::class.java -> MainViewModel(MainRepository(requireContext()))
+            UserViewModel::class.java -> UserViewModel(MainRepository(requireContext()))
+            else -> throw IllegalArgumentException("Unknown ViewModel class")
+        } as T
     }
+
 
     open fun T.initView() = Unit
 }
