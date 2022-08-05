@@ -19,7 +19,7 @@ data class HomeResponse(
 
 @Parcelize
 data class HomeData(
-    var best_seller: List<HomeBestSeller>?=null,
+    var best_seller: List<HomeBestSeller>? = null,
     var book_analysis: HomeBookContents,
     var nickname: String? = ""
 ) : Parcelable
@@ -219,4 +219,20 @@ data class EditAlreadyBookBody(
     var memo: String,
     var rate: Int,
     var tag_ids: List<Int>
+) : Parcelable
+
+@Parcelize
+data class UserData(
+    var email: String,
+    var image_url: String? = "",
+    var nickname: String,
+    var night_push: Boolean? = false,
+    var push: Boolean? = false
+) : Parcelable
+
+@Parcelize
+data class UserDataResponse(
+    var result: String,
+    var reason: String? = "",
+    var data: UserData
 ) : Parcelable
