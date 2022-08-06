@@ -2,21 +2,18 @@ package com.bookting.utils
 
 import android.app.Activity
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Color
 import android.os.Build
-import android.util.Base64
 import android.util.TypedValue
 import android.view.*
 import android.widget.ImageView
 import android.widget.Toast
-import com.bookting.ui.DlgOneBtn
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
-import java.nio.charset.Charset
-import javax.crypto.Cipher
-import javax.crypto.spec.IvParameterSpec
-import javax.crypto.spec.SecretKeySpec
+import java.text.SimpleDateFormat
+import java.util.*
 
 fun Float.dpToPx(context: Context): Float {
     return TypedValue.applyDimension(
@@ -68,4 +65,20 @@ fun ImageView.setImg(uri: Any) {
 
 fun ImageView.setRoundImg(uri: Any) {
     Glide.with(this).load(uri).apply(RequestOptions.bitmapTransform(RoundedCorners(10))).into(this)
+}
+
+fun getDayOfTime(yyyyMMdd: String): String {
+    val formatter = SimpleDateFormat("yyyyMMdd", Locale.KOREA)
+    val d = formatter.parse(yyyyMMdd)
+    val dayFormat = SimpleDateFormat("E", Locale.KOREA)
+    return dayFormat.format(d!!)
+}
+
+fun dpToPx(resource: Resources, size: Float): Float {
+    return TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, size, resource.displayMetrics)
+}
+
+fun getCurrentTime(): String {
+    val format = SimpleDateFormat("yyyyMMdd", Locale.KOREA)
+    return format.format(System.currentTimeMillis())
 }
