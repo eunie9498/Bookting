@@ -20,7 +20,7 @@ data class HomeResponse(
 @Parcelize
 data class HomeData(
     var best_seller: List<HomeBestSeller>? = null,
-    var book_analysis: HomeBookContents,
+    var book_analysis: HomeBookContents? = null,
     var nickname: String? = ""
 ) : Parcelable
 
@@ -54,6 +54,11 @@ sealed class HOME {
     @Parcelize
     data class Recomm(
         val data: List<HomeBestSeller>? = null
+    ) : Parcelable, HOME()
+
+    @Parcelize
+    data class Analysis(
+        var data: HomeBookContents
     ) : Parcelable, HOME()
 }
 
