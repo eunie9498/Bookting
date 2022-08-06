@@ -29,6 +29,13 @@ open class StartActivity : BaseActivity<ActivityStartBinding>(R.layout.activity_
         binding.activity = this
 
         if (sharedHelper.getAccessToken != "") {
+            userViewModel.getUserData()
+            userViewModel.userDataResponse.observe(this@StartActivity) {
+                it.data.let { data ->
+                    sharedHelper.addPreference(MainConstants.Shared.USER_EMAIL, data.email)
+                    sharedHelper.addPreference(MainConstants.Shared.USER_NICK, data.nickname)
+                }
+            }
             goMain()
         }
     }
