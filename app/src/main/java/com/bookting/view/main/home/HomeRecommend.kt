@@ -11,6 +11,7 @@ class HomeRecommend(val listener: HomeListener, val binding: HomeRecommendBindin
 
         val items = ArrayList<SingleBook>()
         items.clear()
+        linear.removeAllViews()
 
         val arr = item.data!!
         arr.slice(0..2).forEach { best ->
