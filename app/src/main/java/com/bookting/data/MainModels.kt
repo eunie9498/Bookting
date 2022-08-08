@@ -190,7 +190,7 @@ data class WishBookResponse(
 @Parcelize
 data class WishBookData(
     var book_id: Int,
-    var memo: String
+    var memo: String? = ""
 ) : Parcelable
 
 @Parcelize
@@ -201,7 +201,7 @@ data class MemoBody(
 @Parcelize
 data class AlreadyBookItem(
     var book_id: Int,
-    var memo: String,
+    var memo: String? = "",
     var rate: Int,
     var tag_ids: List<Int>
 ) : Parcelable

@@ -27,8 +27,6 @@ class AlreadyReadActivity :
         viewModel.tagData.observe(this@AlreadyReadActivity) {
             (recyclerView.adapter as AlreadyAdapter).addItem(it.toMutableList())
         }
-
-
     }
 
     override fun clickTag(item: TagItem) {
@@ -65,7 +63,7 @@ class AlreadyReadActivity :
                 title,
                 msg,
                 getString(R.string.ok)
-            )
+            ) { onBackPressed() }
         }
     }
 }

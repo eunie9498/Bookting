@@ -46,7 +46,7 @@ class WishReadFragment(val bookId: Int, val viewModel: MainViewModel) :
                 title,
                 msg,
                 getString(R.string.ok)
-            )
+            ) { this@WishReadFragment.dismiss() }
         }
     }
 

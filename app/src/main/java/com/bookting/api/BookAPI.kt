@@ -14,7 +14,8 @@ interface BookAPI {
     @GET("books/{book_id}")
     fun getBookDetails(
         @HeaderMap header: Map<String, String>,
-        @Path("book_id") book_id:Int): Observable<GetBookDetailResponse>
+        @Path("book_id") book_id: Int
+    ): Observable<GetBookDetailResponse>
 
     @POST("auth/join")
     fun joinUser(@Body body: JoinBody): Observable<ResultResponse>

@@ -24,7 +24,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = HomeAdapter(sharedHelper.getUserNick, this@HomeFragment)
-        
+
         viewModel.getHome()
         viewModel.homeResponse.observe(requireActivity()) {
             if (it.result == MainConstants.SUCCESS) {
