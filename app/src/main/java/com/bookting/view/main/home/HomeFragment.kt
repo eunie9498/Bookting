@@ -12,6 +12,9 @@ import com.bookting.data.MainConstants
 import com.bookting.data.HOME.Recomm
 import com.bookting.data.LoginBody
 import com.bookting.databinding.FragmentHomeBinding
+import com.bookting.utils.getCurrentTime
+import com.bookting.utils.getDayOfTime
+import com.bookting.utils.showToast
 import com.bookting.view.main.MainActivity
 import com.bookting.view.main.StartActivity
 
@@ -20,17 +23,19 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
     override fun FragmentHomeBinding.initView() = with(binding) {
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = HomeAdapter(this@HomeFragment)
+        recyclerView.adapter = HomeAdapter(sharedHelper.getUserNick, this@HomeFragment)
 
+        showToast(requireContext(), getDayOfTime(getCurrentTime()))
         viewModel.getHome()
         viewModel.homeResponse.observe(requireActivity()) {
             if (it.result == MainConstants.SUCCESS) {
                 (recyclerView.adapter as HomeAdapter).addItems(HOME.Nick(it.data!!.nickname))
                 (recyclerView.adapter as HomeAdapter).addBadge(HOME.Badge)
-                it.data!!.best_seller?.let { best->
-                    (recyclerView.adapter as HomeAdapter).addRecomm(Recomm(best))
+                if (it.data!!.book_analysis != null) {
+                    (recyclerView.adapter as HomeAdapter).addAnalys(HOME.Analysis(it.data!!.book_analysis!!))
+                } else {
+                    (recyclerView.adapter as HomeAdapter).addRecomm(Recomm(it.data!!.best_seller))
                 }
-
             } else {
                 if (it.reason!!.contains("access_token")) {
                     (activity as BaseActivity<*>).showBtnOneDlg(

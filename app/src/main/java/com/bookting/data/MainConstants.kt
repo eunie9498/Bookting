@@ -12,6 +12,13 @@ object MainConstants {
     val MAN = "M"
     val WOMAN = "W"
 
+    val MON = "월"
+    val TUE = "화"
+    val WED = "수"
+    val THU = "목"
+    val FRI = "금"
+    val SAT = "토"
+    val SUN = "일"
     object Shared {
         val ACCESS_TOKEN = "access_token"
         val REFRESH_TOKEN = "refresh_token"
@@ -29,6 +36,7 @@ object MainConstants {
         val ITEM2 = 3
         val GRAPH = 10
         val RECOMM = 11
+        val ANALYSIS = 12
     }
 
 }

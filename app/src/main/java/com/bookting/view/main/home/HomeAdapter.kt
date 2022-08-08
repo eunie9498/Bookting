@@ -1,17 +1,20 @@
 package com.bookting.view.main.home
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bookting.data.GetBookData
 import com.bookting.data.HOME
 import com.bookting.data.MainConstants
+import com.bookting.databinding.HomeAnalyHolderBinding
 import com.bookting.databinding.HomeBadgeHolderBinding
 import com.bookting.databinding.HomeRecommendBinding
 import com.bookting.databinding.HomeTopHolderBinding
+import com.google.gson.Gson
 import java.lang.Exception
 
-class HomeAdapter(val listener: HomeListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class HomeAdapter(val nick: String, val listener: HomeListener) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val itemList = mutableListOf<HOME>()
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -24,6 +27,9 @@ class HomeAdapter(val listener: HomeListener) : RecyclerView.Adapter<RecyclerVie
             }
             is HomeRecommend -> {
                 holder.bind(itemList[position] as HOME.Recomm)
+            }
+            is HomeAnalysis -> {
+                holder.bind(itemList[position] as HOME.Analysis)
             }
         }
     }
@@ -55,6 +61,17 @@ class HomeAdapter(val listener: HomeListener) : RecyclerView.Adapter<RecyclerVie
                 )
             }
 
+            MainConstants.ViewHolder.ANALYSIS -> {
+                return HomeAnalysis(
+                    nick,
+                    HomeAnalyHolderBinding.inflate(
+                        LayoutInflater.from(parent.context),
+                        parent,
+                        false
+                    )
+                )
+            }
+
             else -> {
                 return HomeTop(
                     HomeTopHolderBinding.inflate(
@@ -82,6 +99,11 @@ class HomeAdapter(val listener: HomeListener) : RecyclerView.Adapter<RecyclerVie
         notifyDataSetChanged()
     }
 
+    fun addAnalys(item: HOME.Analysis) {
+        this.itemList.add(item)
+        notifyDataSetChanged()
+    }
+
     override fun getItemCount() = itemList.size
 
     override fun getItemViewType(position: Int): Int = when (itemList[position]) {
@@ -96,6 +118,11 @@ class HomeAdapter(val listener: HomeListener) : RecyclerView.Adapter<RecyclerVie
         is HOME.Recomm -> {
             MainConstants.ViewHolder.RECOMM
         }
+
+        is HOME.Analysis -> {
+            MainConstants.ViewHolder.ANALYSIS
+        }
+
         else -> {
             throw Exception("ViewType Err")
         }
