@@ -22,7 +22,7 @@
 
     <!--msg-->
     <string name="success_add_msg">성공적으로 추가했습니다</string>
-
+    <string name="join_msg">책킹의 회원이 되신 걸\n환영합니다 &#128142;</string>
 
     <!--emoji-->
     <string name="emoji_books">&#128218;</string>
