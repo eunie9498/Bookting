@@ -19,10 +19,13 @@ object MainConstants {
     val FRI = "금"
     val SAT = "토"
     val SUN = "일"
+
     object Shared {
         val ACCESS_TOKEN = "access_token"
         val REFRESH_TOKEN = "refresh_token"
         val FB_TOKEN = "fb_token"
+        val USER_NICK = "user_nick"
+        val USER_EMAIL = "user_email"
     }
 
     object BUNDLE_KEY {
