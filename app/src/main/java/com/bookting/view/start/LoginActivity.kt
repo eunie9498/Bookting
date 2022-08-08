@@ -22,7 +22,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
     }
 
     fun login() {
-        viewModel.login(
+        userViewModel.login(
             LoginBody(
                 email = binding.idField.getEt(),
                 sharedHelper.newEncrypt(binding.pwField.getEt().toByteArray()),
@@ -30,7 +30,7 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
             )
         )
 
-        viewModel.loginResponse.observe(this, Observer {
+        userViewModel.loginResponse.observe(this, Observer {
             if (it.result == MainConstants.SUCCESS) {
                 moveToMain()
                 repository.sharedHelper.addPreference(

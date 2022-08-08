@@ -13,11 +13,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class MainViewModel(val repository: MainRepository) : ViewModel() {
 
-    val joinResponse = MutableLiveData<ResultResponse>()
-    private val _joinResponse = MutableLiveData<ResultResponse>()
-
-    val loginResponse = MutableLiveData<LoginResponse>()
-
     private val _homeResponse = MutableLiveData<HomeResponse>()
 
     val homeResponse: LiveData<HomeResponse>
@@ -62,21 +57,6 @@ class MainViewModel(val repository: MainRepository) : ViewModel() {
 
     }
 
-    fun join(body: JoinBody) {
-        repository.run {
-            join(body)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    if (it.result == MainConstants.SUCCESS) {
-                        _joinResponse.postValue(it)
-                    } else {
-                        Log.d("체크해보자", it.reason ?: "")
-                    }
-                }
-        }
-    }
-
     fun bestSeller() {
         repository.run {
             bestSeller()
@@ -107,29 +87,6 @@ class MainViewModel(val repository: MainRepository) : ViewModel() {
         }
     }
 
-    fun login(body: LoginBody) {
-        repository.run {
-            login(body)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    loginResponse.postValue(it)
-                    if (it.result == MainConstants.SUCCESS) {
-                        it.data?.let { data ->
-                            repository.sharedHelper.addPreference(
-                                MainConstants.Shared.REFRESH_TOKEN,
-                                data.refresh_token
-                            )
-                            repository.sharedHelper.addPreference(
-                                MainConstants.Shared.ACCESS_TOKEN,
-                                data.access_token
-                            )
-                            loginResponse.postValue(it)
-                        }
-                    }
-                }
-        }
-    }
 
     fun getBookDetail(bookId: Int) {
         val BooktingHeader = mutableMapOf<String, String>()
