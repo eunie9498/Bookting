@@ -241,3 +241,29 @@ data class UserDataResponse(
     var reason: String? = "",
     var data: UserData
 ) : Parcelable
+
+@Parcelize
+data class ShelfResponse(
+    var `data`: List<SHELF.UserShelfData>? = null,
+    var has_next: Boolean,
+    var reason: String,
+    var result: String,
+    var total_count: Int
+) : Parcelable
+
+sealed class SHELF {
+    @Parcelize
+    data class ShelfTop(
+        var count: Int
+    ) : Parcelable, SHELF()
+
+    @Parcelize
+    data class UserShelfData(
+        var book_id: Int,
+        var book_name: String,
+        var id: Int,
+        var image_url: String,
+        var memo: String,
+        var rate: Int
+    ) : Parcelable, SHELF()
+}

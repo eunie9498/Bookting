@@ -42,8 +42,13 @@ class MainViewModel(val repository: MainRepository) : ViewModel() {
         get() = _wishResponseData
     private val _wishResponseData = MutableLiveData<ResultResponse>()
 
+    val shelfResponse: LiveData<ShelfResponse>
+        get() = _shelfResponseData
+    private val _shelfResponseData = MutableLiveData<ShelfResponse>()
+
+    val BooktingHeader = mutableMapOf<String, String>()
+
     fun getHome() = repository.run {
-        val BooktingHeader = mutableMapOf<String, String>()
         BooktingHeader["access_token"] = "Bearer " + sharedHelper.getAccessToken
 
         home(BooktingHeader.toMap()).subscribeOn(Schedulers.io())
@@ -89,10 +94,6 @@ class MainViewModel(val repository: MainRepository) : ViewModel() {
 
 
     fun getBookDetail(bookId: Int) {
-        val BooktingHeader = mutableMapOf<String, String>()
-        BooktingHeader["access_token"] = "Bearer " + repository.sharedHelper.getAccessToken
-
-
         repository.run {
             getBookDetails(BooktingHeader.toMap(), bookId)
                 .subscribeOn(Schedulers.io())
@@ -140,6 +141,19 @@ class MainViewModel(val repository: MainRepository) : ViewModel() {
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe {
                     _wishResponseData.postValue(it)
+                }
+        }
+    }
+
+    fun getShelfByUser(month: String, page: Int? = 0) {
+        BooktingHeader["access_token"] = "Bearer " + repository.sharedHelper.getAccessToken
+
+        repository.run {
+            getShelf(BooktingHeader.toMap(), month, page ?: 0)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe {
+                    _shelfResponseData.postValue(it)
                 }
         }
     }

@@ -87,6 +87,14 @@ interface BookAPI {
     @GET("new-books")
     fun getNewBook(): Observable<GetBookResponse>
 
+    //책장
+    @GET("bookshelf")
+    fun getBookShelf(
+        @HeaderMap header: Map<String, String>,
+        @Query("month") month:String,
+        @Query("page") page: Int
+    ): Observable<ShelfResponse>
+
     /**
      * setting
      */
