@@ -74,9 +74,16 @@
     <string name="wish_read">읽고 싶은</string>
     <string name="select_one_more_tag">1가지 이상의 태그를 선택해주세요</string>
 
+
+    <!--책장-->
+    <string name="shelf_title_by_user">%1$s님의 책장</string>
+    <string name="shelf_count">총 %1$d권을 기록했어요 &#9997;</string>
+
     <!--setting-->
     <string name="setting_book">&#128218; 도서 관리</string>
     <string name="already_book">이미 읽은 책</string>
     <string name="wish_book">읽고 싶은 책</string>
+
+
 
 </resources>
