@@ -28,6 +28,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
         viewModel.getHome()
         viewModel.homeResponse.observe(requireActivity()) {
             if (it.result == MainConstants.SUCCESS) {
+                sharedHelper.addPreference(MainConstants.Shared.USER_NICK, it.data!!.nickname)
                 (recyclerView.adapter as HomeAdapter).addItems(HOME.Nick(it.data!!.nickname))
                 (recyclerView.adapter as HomeAdapter).addBadge(HOME.Badge)
                 if (it.data!!.book_analysis != null) {
