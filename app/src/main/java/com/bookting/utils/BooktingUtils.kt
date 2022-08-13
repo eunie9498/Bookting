@@ -9,6 +9,7 @@ import android.util.TypedValue
 import android.view.*
 import android.widget.ImageView
 import android.widget.Toast
+import com.bookting.data.MainConstants
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
@@ -81,4 +82,26 @@ fun dpToPx(resource: Resources, size: Float): Float {
 fun getCurrentTime(): String {
     val format = SimpleDateFormat("yyyyMMdd", Locale.KOREA)
     return format.format(System.currentTimeMillis())
+}
+
+fun getCurrentTimeBefore(beforeCount: Int): Array<String> {
+    val simple = SimpleDateFormat("yyyyMM", Locale.KOREA)
+    val result = simple.format(Date(System.currentTimeMillis()))
+
+    val calendar = Calendar.getInstance()
+    calendar.time = simple.parse(result)!!
+    val str = ArrayList<String>()
+
+    repeat(beforeCount) {
+        val month: String = simple.format(calendar.time)
+        str.add(
+            month.substring(0, 4) + MainConstants.YEAR + " " + month.substring(
+                4,
+                6
+            ) + MainConstants.MONTH
+        )
+        calendar.add(Calendar.MONTH, -1)
+    }
+
+    return str.toTypedArray()
 }

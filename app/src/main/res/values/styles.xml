@@ -18,6 +18,11 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="Normal20">
+        <item name="android:textSize">20dp</item>
+        <item name="android:textColor">@color/grey900</item>
+    </style>
+
     <style name="Bold18">
         <item name="android:textSize">18dp</item>
         <item name="android:textColor">@color/grey900</item>
