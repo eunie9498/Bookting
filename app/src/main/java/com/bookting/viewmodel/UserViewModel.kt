@@ -31,7 +31,13 @@ class UserViewModel(val repository: MainRepository) : ViewModel() {
             getUserData(BooktingHeader.toMap()).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({ _userDataResponse.postValue(it) }, {
-                    _userDataResponse.postValue(UserDataResponse("fail", "access_token", null))
+                    _userDataResponse.postValue(
+                        UserDataResponse(
+                            MainConstants.FAIL,
+                            "access_token",
+                            null
+                        )
+                    )
                 })
         }
     }
@@ -68,7 +74,13 @@ class UserViewModel(val repository: MainRepository) : ViewModel() {
                         }
                     }
                 }, {
-                    loginResponse.postValue(LoginResponse("fail", it.message ?: "token", null))
+                    loginResponse.postValue(
+                        LoginResponse(
+                            MainConstants.FAIL,
+                            it.message ?: "token",
+                            null
+                        )
+                    )
                 })
         }
     }

@@ -57,7 +57,13 @@ class MainViewModel(val repository: MainRepository) : ViewModel() {
                 { response ->
                     _homeResponse.postValue(response)
                 }, { throwable ->
-                    _homeResponse.postValue(HomeResponse("fail", throwable.message ?: "", null))
+                    _homeResponse.postValue(
+                        HomeResponse(
+                            MainConstants.FAIL,
+                            throwable.message ?: "",
+                            null
+                        )
+                    )
                 })
 
     }
@@ -152,9 +158,21 @@ class MainViewModel(val repository: MainRepository) : ViewModel() {
             getShelf(BooktingHeader.toMap(), month, page ?: 0)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    _shelfResponseData.postValue(it)
-                }
+                .subscribe(
+                    {
+                        _shelfResponseData.postValue(it)
+                    },
+                    {
+                        _shelfResponseData.postValue(
+                            ShelfResponse(
+                                null,
+                                false,
+                                it.message ?: "",
+                                MainConstants.FAIL,
+                                0
+                            )
+                        )
+                    })
         }
     }
 }
