@@ -239,7 +239,7 @@ data class UserData(
 data class UserDataResponse(
     var result: String,
     var reason: String? = "",
-    var data: UserData
+    var data: UserData?=null
 ) : Parcelable
 
 @Parcelize

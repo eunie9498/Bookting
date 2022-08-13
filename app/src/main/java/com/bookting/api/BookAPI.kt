@@ -99,6 +99,8 @@ interface BookAPI {
      * setting
      */
     @GET("users")
-    fun getUserData(): Observable<UserDataResponse>
+    fun getUserData(
+        @HeaderMap header: Map<String, String>
+    ): Observable<UserDataResponse>
 
 }

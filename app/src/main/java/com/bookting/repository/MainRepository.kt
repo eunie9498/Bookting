@@ -54,7 +54,7 @@ class MainRepository(context: Context) {
 
     fun addWishBook(body: WishBookData) = api.addWishBook(body)
 
-    fun getUserData() = api.getUserData()
+    fun getUserData(header: Map<String, String>) = api.getUserData(header)
 
     fun getShelf(header: Map<String, String>, month: String, page: Int) =
         api.getBookShelf(header, month, page)

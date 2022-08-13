@@ -6,6 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.bookting.data.*
 import com.bookting.repository.MainRepository
+import com.google.gson.Gson
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import io.reactivex.rxjava3.schedulers.Schedulers
 
@@ -21,13 +22,17 @@ class UserViewModel(val repository: MainRepository) : ViewModel() {
         get() = _userDataResponse
     private val _userDataResponse = MutableLiveData<UserDataResponse>()
 
+    val BooktingHeader = mutableMapOf<String, String>()
+
     fun getUserData() {
+        BooktingHeader["access_token"] = "Bearer " + repository.sharedHelper.getAccessToken
+
         repository.run {
-            getUserData().subscribeOn(Schedulers.io())
+            getUserData(BooktingHeader.toMap()).subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
-                    _userDataResponse.postValue(it)
-                }
+                .subscribe({ _userDataResponse.postValue(it) }, {
+                    _userDataResponse.postValue(UserDataResponse("fail", "access_token", null))
+                })
         }
     }
 
@@ -47,7 +52,7 @@ class UserViewModel(val repository: MainRepository) : ViewModel() {
             login(body)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe {
+                .subscribe({
                     loginResponse.postValue(it)
                     if (it.result == MainConstants.SUCCESS) {
                         it.data?.let { data ->
@@ -62,7 +67,9 @@ class UserViewModel(val repository: MainRepository) : ViewModel() {
                             loginResponse.postValue(it)
                         }
                     }
-                }
+                }, {
+                    loginResponse.postValue(LoginResponse("fail", it.message ?: "token", null))
+                })
         }
     }
 }
