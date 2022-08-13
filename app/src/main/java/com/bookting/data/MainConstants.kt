@@ -8,6 +8,7 @@ object MainConstants {
     val BASE_URL = "https://api.chaeking.com/v1/"
 
     val SUCCESS = "success"
+    val FAIL = "fail"
 
     val MAN = "M"
     val WOMAN = "W"
@@ -19,6 +20,9 @@ object MainConstants {
     val FRI = "금"
     val SAT = "토"
     val SUN = "일"
+
+    val YEAR = "년"
+    val MONTH = "월"
 
     object Shared {
         val ACCESS_TOKEN = "access_token"
