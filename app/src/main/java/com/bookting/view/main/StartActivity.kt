@@ -12,6 +12,7 @@ import com.bookting.view.start.JoinActivity
 import com.bookting.view.start.LoginActivity
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.messaging.FirebaseMessaging
+import com.google.gson.Gson
 
 open class StartActivity : BaseActivity<ActivityStartBinding>(R.layout.activity_start) {
 
@@ -31,12 +32,28 @@ open class StartActivity : BaseActivity<ActivityStartBinding>(R.layout.activity_
         if (sharedHelper.getAccessToken != "") {
             userViewModel.getUserData()
             userViewModel.userDataResponse.observe(this@StartActivity) {
-                it.data.let { data ->
-                    sharedHelper.addPreference(MainConstants.Shared.USER_EMAIL, data.email)
-                    sharedHelper.addPreference(MainConstants.Shared.USER_NICK, data.nickname)
+                if (it.result == MainConstants.SUCCESS) {
+                    it.data.let { data ->
+                        sharedHelper.addPreference(MainConstants.Shared.USER_EMAIL, data!!.email)
+                        sharedHelper.addPreference(MainConstants.Shared.USER_NICK, data!!.nickname)
+                    }
+                    goMain()
+                } else {
+                    if (it.reason!!.contains("access_token")) {
+                        showBtnOneDlg(
+                            getString(R.string.login_err_title),
+                            getString(R.string.login_err_msg_expire), getString(R.string.ok)
+                        ) {
+                            sharedHelper.addPreference(MainConstants.Shared.ACCESS_TOKEN, "")
+                            sharedHelper.addPreference(MainConstants.Shared.REFRESH_TOKEN, "")
+
+                            val i = Intent(this, StartActivity::class.java)
+                            i.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+                            startActivity(i)
+                        }
+                    }
                 }
             }
-            goMain()
         }
     }
 

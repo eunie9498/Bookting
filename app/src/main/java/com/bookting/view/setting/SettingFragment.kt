@@ -11,9 +11,9 @@ class SettingFragment : BaseFragment<SettingFragmentBinding>(R.layout.setting_fr
         userViewModel.getUserData()
         userViewModel.userDataResponse.observe(this@SettingFragment) {
             it.data.let { data ->
-                binding.tvEmail.text = data.email
-                binding.tvName.text = "${data.nickname}님"
-                binding.imgProfile.setImg(data.image_url ?: "")
+                binding.tvEmail.text = data!!.email
+                binding.tvName.text = "${data!!.nickname}님"
+                binding.imgProfile.setImg(data!!.image_url ?: "")
             }
 
         }

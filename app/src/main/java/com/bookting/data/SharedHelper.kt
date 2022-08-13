@@ -1,15 +1,15 @@
 package com.bookting.data
 
 import android.content.Context
-import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
 import android.util.Base64
+import androidx.preference.PreferenceManager
 import java.nio.charset.Charset
 import javax.crypto.Cipher
 import javax.crypto.spec.IvParameterSpec
 import javax.crypto.spec.SecretKeySpec
 
-class SharedHelper(context: Context) {
+class SharedHelper(val context: Context) {
 
     var sharedPreferences: SharedPreferences =
         context.getSharedPreferences(MainConstants.SHARED, Context.MODE_PRIVATE)
@@ -25,6 +25,13 @@ class SharedHelper(context: Context) {
                 else -> return
             }
         }
+    }
+
+    fun deletePreference(key: String){
+        val systemPres: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
+        val editor = systemPres.edit()
+        editor.remove(key)
+        editor.apply()
     }
 
     val getFbToken: String
