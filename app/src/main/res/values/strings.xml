@@ -76,8 +76,9 @@
 
 
     <!--책장-->
-    <string name="shelf_title_by_user">%1$s님의 책장</string>
+    <string name="shelf_title_by_user">%1$s님의 서재</string>
     <string name="shelf_count">총 %1$d권을 기록했어요 &#9997;</string>
+    <string name="shelf_empty">&#128580; 책장이 비어있어요\n</string>
 
     <!--setting-->
     <string name="setting_book">&#128218; 도서 관리</string>

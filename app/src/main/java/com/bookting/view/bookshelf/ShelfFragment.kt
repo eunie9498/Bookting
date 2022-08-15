@@ -5,7 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager2.widget.ViewPager2
 import com.bookting.BaseFragment
 import com.bookting.R
 import com.bookting.data.MainConstants
@@ -22,44 +24,49 @@ class ShelfFragment : BaseFragment<ShelfFragmentBinding>(R.layout.shelf_fragment
 
     override fun ShelfFragmentBinding.initView() {
 
+        init()
+        getShelf(getCurrentTime().substring(0, 6))
     }
 
-    override fun onResume() {
-        super.onResume()
-
-        initView()
-
-        viewModel.getShelfByUser(getCurrentTime().substring(0, 6))
+    private fun getShelf(date: String) {
+        viewModel.getShelfByUser(date)
         viewModel.shelfResponse.observe(this@ShelfFragment) {
             if (it.result == MainConstants.SUCCESS) {
-                it.data?.let { data ->
-                    binding.tvTitle.text =
-                        getString(R.string.shelf_title_by_user, sharedHelper.getUserNick)
-                    binding.tvCount.text = getString(R.string.shelf_count, it.total_count)
-                    drawGrid(data)
+                binding.tvEmpty.isVisible = it.data?.size == 0 || it.data == null
+
+                if (it.data?.size == 0 || it.data == null) {
+                    drawGrid(emptyList())
+                    binding.tvCount.text = getString(R.string.shelf_count, 0)
+                } else {
+                    it.data?.let { data ->
+                        binding.tvTitle.text =
+                            getString(R.string.shelf_title_by_user, sharedHelper.getUserNick)
+                        binding.tvCount.text = getString(R.string.shelf_count, it.total_count)
+                        drawGrid(data)
+                    }
                 }
-            } else {
-
             }
-
         }
     }
 
-    fun drawGrid(arr: List<SHELF.UserShelfData>) = with(binding) {
+    private fun drawGrid(arr: List<SHELF.UserShelfData>) = with(binding) {
         val adapter = ViewPagerAdapter()
         adapter.addItems(arr)
         viewPager.adapter = adapter
+        dotsIndicator.attachTo(viewPager)
     }
 
-    fun initView() = with(binding) {
+    private fun init() = with(binding) {
         val arr = getCurrentTimeBefore(6)
-        var spinnerAdapter =
+        val spinnerAdapter =
             ArrayAdapter(root.context, R.layout.spinner_txt, arr)
         spinner.adapter = spinnerAdapter
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
-                //arr[pos]
+                val date = arr[pos].replace(MainConstants.YEAR, "").replace(MainConstants.MONTH, "")
+                    .replace(" ", "")
+                getShelf(date)
             }
 
             override fun onNothingSelected(p0: AdapterView<*>?) {
@@ -68,10 +75,10 @@ class ShelfFragment : BaseFragment<ShelfFragmentBinding>(R.layout.shelf_fragment
         }
     }
 
-    inner class ViewPagerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>(){
+    inner class ViewPagerAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         var items = ArrayList<SHELF.UserShelfData>()
 
-        fun addItems(arr: List<SHELF.UserShelfData>){
+        fun addItems(arr: List<SHELF.UserShelfData>) {
             items.addAll(arr)
             notifyDataSetChanged()
         }
@@ -81,15 +88,17 @@ class ShelfFragment : BaseFragment<ShelfFragmentBinding>(R.layout.shelf_fragment
             holder.bind(items)
         }
 
-        override fun getItemCount() = items.size
+        override fun getItemCount() = 1
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-            val binding = ShelfPagerItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            val binding =
+                ShelfPagerItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
             return PagerHolder(binding)
         }
 
-        inner class PagerHolder(val binding: ShelfPagerItemBinding): RecyclerView.ViewHolder(binding.root){
-            fun bind(item: List<SHELF.UserShelfData>) = with(binding){
+        inner class PagerHolder(val binding: ShelfPagerItemBinding) :
+            RecyclerView.ViewHolder(binding.root) {
+            fun bind(item: List<SHELF.UserShelfData>) = with(binding) {
                 val gridArr = ArrayList<GridBook>()
                 item.forEach {
                     val grid = GridBook(root.context)
