@@ -53,6 +53,8 @@ class ShelfFragment : BaseFragment<ShelfFragmentBinding>(R.layout.shelf_fragment
         val adapter = ViewPagerAdapter()
         adapter.addItems(arr)
         viewPager.adapter = adapter
+        (viewPager.getChildAt(0) as RecyclerView).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
+
         dotsIndicator.attachTo(viewPager)
     }
 
