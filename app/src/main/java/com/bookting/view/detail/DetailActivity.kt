@@ -16,6 +16,7 @@ class DetailActivity : BaseActivity<ActivityBookDetailBinding>(R.layout.activity
                 book_id = extra.getInt(MainConstants.BUNDLE_KEY.BOOK_ID)
             }
         }
+
         initView()
     }
 

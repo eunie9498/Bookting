@@ -24,17 +24,21 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = HomeAdapter(sharedHelper.getUserNick, this@HomeFragment)
+    }
+
+    override fun onResume() {
+        super.onResume()
 
         viewModel.getHome()
         viewModel.homeResponse.observe(requireActivity()) {
             if (it.result == MainConstants.SUCCESS) {
                 sharedHelper.addPreference(MainConstants.Shared.USER_NICK, it.data!!.nickname)
-                (recyclerView.adapter as HomeAdapter).addItems(HOME.Nick(it.data!!.nickname))
-                (recyclerView.adapter as HomeAdapter).addBadge(HOME.Badge)
+                (binding.recyclerView.adapter as HomeAdapter).addItems(HOME.Nick(it.data!!.nickname))
+                (binding.recyclerView.adapter as HomeAdapter).addBadge(HOME.Badge)
                 if (it.data!!.book_analysis != null) {
-                    (recyclerView.adapter as HomeAdapter).addAnalys(HOME.Analysis(it.data!!.book_analysis!!))
+                    (binding.recyclerView.adapter as HomeAdapter).addAnalys(HOME.Analysis(it.data!!.book_analysis!!))
                 } else {
-                    (recyclerView.adapter as HomeAdapter).addRecomm(Recomm(it.data!!.best_seller))
+                    (binding.recyclerView.adapter as HomeAdapter).addRecomm(Recomm(it.data!!.best_seller))
                 }
             } else {
                 if (it.reason!!.contains("access_token")) {
@@ -49,7 +53,6 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), 
                 }
             }
         }
-
     }
 
     override fun onBest() {

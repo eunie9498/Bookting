@@ -1,11 +1,10 @@
 package com.bookting.view.main
 
-import android.content.Intent
 import com.bookting.BaseActivity
 import com.bookting.R
 import com.bookting.databinding.ActivityMainBinding
 import com.bookting.ui.TabItem
-import com.bookting.view.bookshelf.ShelfActivity
+import com.bookting.view.bookshelf.ShelfFragment
 import com.bookting.view.main.home.HomeFragment
 import com.bookting.view.setting.SettingFragment
 
@@ -31,7 +30,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
                 supportFragmentManager.beginTransaction().replace(R.id.frame, fragment).commit()
             }
             tabList -> {
-                val fragment = ShelfActivity()
+                val fragment = ShelfFragment()
                 supportFragmentManager.beginTransaction().replace(R.id.frame, fragment).commit()
 
             }

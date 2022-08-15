@@ -244,7 +244,7 @@ data class UserDataResponse(
 
 @Parcelize
 data class ShelfResponse(
-    var `data`: List<SHELF.UserShelfData>? = null,
+    var data: List<SHELF.UserShelfData>? = null,
     var has_next: Boolean,
     var reason: String,
     var result: String,
