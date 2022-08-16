@@ -1,5 +1,6 @@
 package com.bookting.view.setting
 
+import com.bookting.BaseActivity
 import com.bookting.BaseFragment
 import com.bookting.R
 import com.bookting.databinding.SettingFragmentBinding
@@ -13,8 +14,19 @@ class SettingFragment : BaseFragment<SettingFragmentBinding>(R.layout.setting_fr
         binding.tvName.text = sharedHelper.getUserNick + "님"
         binding.imgProfile.setImg(sharedHelper.getUserProfile)
     }
-            }
 
+    fun moveTo(type: Int) {
+        when (type) {
+            0 -> {
+                (activity as BaseActivity<*>).moveToDetailAlready()
+            }
+            1 -> {
+
+            }
         }
+    }
+
+    fun moveThreeDot() {
+        (activity as BaseActivity<*>).moveToDot()
     }
 }

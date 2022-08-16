@@ -14,11 +14,14 @@ import com.bookting.data.MainConstants
 import com.bookting.repository.MainRepository
 import com.bookting.ui.DlgOneBtn
 import com.bookting.ui.ToastOneBtn
+import com.bookting.utils.setImg
 import com.bookting.view.detail.DetailActivity
+import com.bookting.view.detail.DetailAlreadyActivity
 import com.bookting.view.main.MainActivity
 import com.bookting.view.main.NetworkActivity
 import com.bookting.view.main.best.BestActivity
 import com.bookting.view.main.new.NewActivity
+import com.bookting.view.setting.dot.ThreeDotActivity
 import com.bookting.viewmodel.MainViewModel
 import com.bookting.viewmodel.UserViewModel
 
@@ -31,19 +34,19 @@ open class BaseActivity<T : ViewDataBinding>(@LayoutRes val layoutRes: Int) : Ne
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_start)
+        setContentView(R.layout.activity_base)
 
         binding = DataBindingUtil.setContentView(this, layoutRes)
         val factory = ViewModelFactory(MainRepository(this))
         viewModel = ViewModelProvider(this, factory).get(MainViewModel::class.java)
         userViewModel = ViewModelProvider(this, factory).get(UserViewModel::class.java)
         repository = MainRepository(this)
-
         binding.onCreate()
     }
 
+
     inner class ViewModelFactory(val repository: MainRepository) : ViewModelProvider.Factory {
-        override fun <T : ViewModel> create(modelClass: Class<T>): T = when(modelClass){
+        override fun <T : ViewModel> create(modelClass: Class<T>): T = when (modelClass) {
             MainViewModel::class.java -> MainViewModel(MainRepository(this@BaseActivity))
             UserViewModel::class.java -> UserViewModel(MainRepository(this@BaseActivity))
             else -> throw IllegalArgumentException("Unknown ViewModel class")
@@ -56,6 +59,7 @@ open class BaseActivity<T : ViewDataBinding>(@LayoutRes val layoutRes: Int) : Ne
     fun showToast(toast: String) {
         Toast.makeText(binding.root.context, toast, Toast.LENGTH_SHORT).show()
     }
+
 
     fun showToastOneBtn(
         title: String,
@@ -98,6 +102,16 @@ open class BaseActivity<T : ViewDataBinding>(@LayoutRes val layoutRes: Int) : Ne
         startActivity(i)
     }
 
+    fun moveToDetailAlready() {
+        val i = Intent(this, DetailAlreadyActivity::class.java)
+        startActivity(i)
+    }
+
+    fun moveToDot() {
+        val i = Intent(this, ThreeDotActivity::class.java)
+        startActivity(i)
+    }
+
     fun showBtnOneDlg(
         title: String,
         msg: String,
@@ -108,7 +122,7 @@ open class BaseActivity<T : ViewDataBinding>(@LayoutRes val layoutRes: Int) : Ne
         dlg.apply {
             setTitle(title)
             setMsg(msg)
-            setListener(btnTxt, listener?:null)
+            setListener(btnTxt, listener ?: null)
             show()
         }
 

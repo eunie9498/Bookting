@@ -3,9 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-
     <data>
 
+        <variable
+            name="fragment"
+            type="com.bookting.view.setting.SettingFragment" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,6 +21,7 @@
             android:layout_marginTop="20dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/ic_three_dot"
+            android:onClick="@{()->fragment.moveThreeDot()}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -81,6 +84,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
+            android:onClick="@{()->fragment.moveTo(0)}"
             app:layout_constraintTop_toBottomOf="@id/header"
             app:setTxt="@string/already_book" />
 
@@ -91,6 +95,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="8dp"
             android:layout_marginEnd="20dp"
+            android:onClick="@{()->fragment.moveTo(1)}"
             app:layout_constraintTop_toBottomOf="@id/already"
             app:setTxt="@string/wish_book" />
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -27,6 +27,7 @@
             android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:background="@drawable/arrow_back"
+            android:onClick="@{()->activity.onBackPressed()}"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
