@@ -30,6 +30,7 @@ object MainConstants {
         val FB_TOKEN = "fb_token"
         val USER_NICK = "user_nick"
         val USER_EMAIL = "user_email"
+        val USER_PROFILE = "user_profile"
     }
 
     object BUNDLE_KEY {

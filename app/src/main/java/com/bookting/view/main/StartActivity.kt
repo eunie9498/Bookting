@@ -33,9 +33,10 @@ open class StartActivity : BaseActivity<ActivityStartBinding>(R.layout.activity_
             userViewModel.getUserData()
             userViewModel.userDataResponse.observe(this@StartActivity) {
                 if (it.result == MainConstants.SUCCESS) {
-                    it.data.let { data ->
-                        sharedHelper.addPreference(MainConstants.Shared.USER_EMAIL, data!!.email)
-                        sharedHelper.addPreference(MainConstants.Shared.USER_NICK, data!!.nickname)
+                    it.data?.let { data ->
+                        sharedHelper.addPreference(MainConstants.Shared.USER_EMAIL, data.email)
+                        sharedHelper.addPreference(MainConstants.Shared.USER_NICK, data.nickname)
+                        sharedHelper.addPreference(MainConstants.Shared.USER_PROFILE, data.image_url)
                     }
                     goMain()
                 } else {

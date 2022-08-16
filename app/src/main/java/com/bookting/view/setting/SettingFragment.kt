@@ -8,12 +8,11 @@ import com.bookting.utils.setImg
 class SettingFragment : BaseFragment<SettingFragmentBinding>(R.layout.setting_fragment) {
 
     override fun SettingFragmentBinding.initView() {
-        userViewModel.getUserData()
-        userViewModel.userDataResponse.observe(this@SettingFragment) {
-            it.data.let { data ->
-                binding.tvEmail.text = data!!.email
-                binding.tvName.text = "${data!!.nickname}님"
-                binding.imgProfile.setImg(data!!.image_url ?: "")
+        binding.fragment = this@SettingFragment
+        binding.tvEmail.text = sharedHelper.getUserEmail
+        binding.tvName.text = sharedHelper.getUserNick + "님"
+        binding.imgProfile.setImg(sharedHelper.getUserProfile)
+    }
             }
 
         }

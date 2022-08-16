@@ -27,7 +27,7 @@ class SharedHelper(val context: Context) {
         }
     }
 
-    fun deletePreference(key: String){
+    fun deletePreference(key: String) {
         val systemPres: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
         val editor = systemPres.edit()
         editor.remove(key)
@@ -48,6 +48,9 @@ class SharedHelper(val context: Context) {
 
     val getUserEmail: String
         get() = sharedPreferences.getString(MainConstants.Shared.USER_EMAIL, "") ?: ""
+
+    val getUserProfile: String
+        get() = sharedPreferences.getString(MainConstants.Shared.USER_PROFILE, "") ?: ""
 
     fun newEncrypt(
         input: ByteArray,
