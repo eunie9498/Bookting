@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Bookting">
         <activity
-            android:name=".view.main.StartActivity"
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,6 +21,10 @@
             </intent-filter>
         </activity>
 
+
+        <activity
+            android:name=".view.main.StartActivity"
+            android:exported="false" />
         <activity
             android:name=".view.start.JoinActivity"
             android:exported="false" />
@@ -59,6 +63,14 @@
             android:name=".view.add.AlreadyReadActivity"
             android:exported="false"
             android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".view.detail.DetailAlreadyActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".view.setting.dot.ThreeDotActivity"
+            android:exported="false" />
 
         <service
             android:name=".FbMessaging"
