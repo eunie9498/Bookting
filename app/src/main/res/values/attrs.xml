@@ -2,6 +2,7 @@
 <resources>
     <attr name="setTxt" format="string" />
     <attr name="setEmoji" format="string" />
+    <attr name="setEndTxt" format="string" />
 
     <declare-styleable name="InputTxt">
         <attr name="android:inputType" />
@@ -33,5 +34,10 @@
 
     <declare-styleable name="ArrowItem">
         <attr name="setTxt" />
+    </declare-styleable>
+
+    <declare-styleable name="LineEndTxt">
+        <attr name="setTxt" />
+        <attr name="setEndTxt"/>
     </declare-styleable>
 </resources>

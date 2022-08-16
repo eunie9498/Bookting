@@ -72,7 +72,7 @@
     <!--add Book-->
     <string name="already_read">이미 읽은</string>
     <string name="wish_read">읽고 싶은</string>
-    <string name="select_one_more_tag">1가지 이상의 태그를 선택해주세요</string>
+    <string name="select_one_more_tag">태그를 선택해주세요(최대 5개)</string>
 
 
     <!--책장-->
@@ -85,6 +85,15 @@
     <string name="already_book">이미 읽은 책</string>
     <string name="wish_book">읽고 싶은 책</string>
 
+    <string name="notice">공지사항</string>
+    <string name="faq">자주 묻는 질문</string>
+    <string name="cs">문의하기</string>
+    <string name="policy">이용약관</string>
+    <string name="policy_personal">개인정보 처리방침</string>
+    <string name="policy_open_source">오픈소스 라이센스</string>
+    <string name="version_info">버전정보</string>
+    <string name="who_is_develop">개발자정보</string>
+    <string name="leave_chaeking"><u>회원탈퇴</u></string>
 
 
 </resources>
