@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.databinding.BindingAdapter
 import com.bookting.R
 import com.bookting.databinding.LineEndTxtBinding
 
@@ -15,7 +16,7 @@ class LineEndTxt constructor(
     val lineEndTxtBinding = LineEndTxtBinding.inflate(LayoutInflater.from(context), this, true)
 
     init {
-        val a = context.obtainStyledAttributes(R.styleable.LineEndTxt)
+        val a = context.obtainStyledAttributes(attributeSet, R.styleable.LineEndTxt)
 
         if (a.hasValue(R.styleable.LineEndTxt_setTxt))
             lineEndTxtBinding.tvTitle.text = a.getText(R.styleable.LineEndTxt_setTxt)
@@ -24,4 +25,9 @@ class LineEndTxt constructor(
 
         a.recycle()
     }
+
+    fun setEndTxt(txt: String){
+        this.lineEndTxtBinding.tvEnd.text = txt
+    }
+
 }
