@@ -1,11 +1,13 @@
 package com.bookting.view.add
 
+import android.util.Log
 import com.bookting.BaseActivity
 import com.bookting.R
 import com.bookting.data.AlreadyBookItem
 import com.bookting.data.MainConstants
 import com.bookting.data.TagItem
 import com.bookting.databinding.ActivityAlreadyReadBinding
+import com.google.gson.Gson
 
 class AlreadyReadActivity :
     BaseActivity<ActivityAlreadyReadBinding>(R.layout.activity_already_read),
@@ -30,9 +32,12 @@ class AlreadyReadActivity :
     }
 
     override fun clickTag(item: TagItem) {
-        viewModel.tagData.value!!.forEach {
-            if (item == it) {
-                it.selected = item.selected
+
+        if (viewModel.tagData.value!!.filter { it.selected == true }.size < 5) {
+            viewModel.tagData.value!!.forEach {
+                if (item == it) {
+                    it.selected = item.selected
+                }
             }
         }
     }

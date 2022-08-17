@@ -16,7 +16,8 @@ import com.bookting.databinding.TagItemListBinding
 import com.bookting.utils.dpToPx
 import com.google.android.flexbox.FlexboxLayout
 
-class AlreadyAdapter(val listener: AlreadyListener): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AlreadyAdapter(val listener: AlreadyListener) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     var items = mutableListOf<TagItem>()
 
     interface AlreadyListener {
@@ -69,9 +70,16 @@ class AlreadyAdapter(val listener: AlreadyListener): RecyclerView.Adapter<Recycl
                 tv.setTextColor(ContextCompat.getColor(root.context, R.color.deep_blue900))
                 tv.textSize = 12F
                 tv.setOnClickListener {
-                    it.isSelected = !it.isSelected
-                    tagItem.selected = it.isSelected
-                    listener.clickTag(tagItem)
+                    if (item.filter { it.selected == true }.size < 5) {
+                        it.isSelected = !it.isSelected
+                        tagItem.selected = it.isSelected
+                        listener.clickTag(tagItem)
+                    } else {
+                        if (it.isSelected) {
+                            tagItem.selected = false
+                            it.isSelected = false
+                        }
+                    }
                 }
                 tvArr.add(tv)
             }
@@ -85,7 +93,7 @@ class AlreadyAdapter(val listener: AlreadyListener): RecyclerView.Adapter<Recycl
 
     override fun getItemCount() = 1
 
-    fun addItem(newList: MutableList<TagItem>){
+    fun addItem(newList: MutableList<TagItem>) {
         val callback = DiffUtilCallback(items, newList)
         val result = DiffUtil.calculateDiff(callback)
         items = newList
