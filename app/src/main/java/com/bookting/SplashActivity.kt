@@ -33,13 +33,13 @@ class SplashActivity: BaseActivity<ActivitySplashBinding>(R.layout.activity_spla
                     startActivity(intent)
                 } else {
                     if (it.reason!!.contains("access_token")) {
+                        sharedHelper.addPreference(MainConstants.Shared.ACCESS_TOKEN, "")
+                        sharedHelper.addPreference(MainConstants.Shared.REFRESH_TOKEN, "")
+
                         showBtnOneDlg(
                             getString(R.string.login_err_title),
                             getString(R.string.login_err_msg_expire), getString(R.string.ok)
                         ) {
-                            sharedHelper.addPreference(MainConstants.Shared.ACCESS_TOKEN, "")
-                            sharedHelper.addPreference(MainConstants.Shared.REFRESH_TOKEN, "")
-
                             val i = Intent(this@SplashActivity, StartActivity::class.java)
                             i.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
                             startActivity(i)
@@ -47,6 +47,10 @@ class SplashActivity: BaseActivity<ActivitySplashBinding>(R.layout.activity_spla
                     }
                 }
             }
+        }else{
+            val i = Intent(this@SplashActivity, StartActivity::class.java)
+            i.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
+            startActivity(i)
         }
     }
 
