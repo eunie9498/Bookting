@@ -18,19 +18,19 @@ class GridBook constructor(
     attributeSet: AttributeSet? = null
 ) : ConstraintLayout(context, attributeSet) {
 
-    val gridBinding = GridItemBinding.inflate(LayoutInflater.from(context),this, true)
+    val gridBinding = GridItemBinding.inflate(LayoutInflater.from(context), this, true)
 
-    fun setBooksImg(img: String){
+    fun setBooksImg(img: String) {
         gridBinding.img.setImg(img)
     }
 
-    fun setTitle(title: String){
+    fun setTitle(title: String) {
         gridBinding.tvTitle.text = title
     }
 
-    fun setGrade(star: Int){
+    fun setGrade(star: Int) {
         var arr = ArrayList<ImageView>()
-        repeat(star){
+        repeat(star) {
             val img = ImageView(context)
             img.setBackgroundResource(R.drawable.fav_blue)
             val params = LinearLayout.LayoutParams(
