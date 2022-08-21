@@ -19,24 +19,19 @@ class InputTxt constructor(
     val binding = CustomInputTxtBinding.inflate(LayoutInflater.from(context), this, true)
 
     init {
-        val a = context.obtainStyledAttributes(R.styleable.InputTxt)
-
+        val a = context.obtainStyledAttributes(attributeSet, R.styleable.InputTxt)
+        if (a.hasValue(R.styleable.InputTxt_setHint))
+            binding.inputLayout.hint = a.getText(R.styleable.InputTxt_setHint)
         a.recycle()
-    }
 
-    fun getEt(): String {
-        return binding.tvInput.text.toString()
-    }
 
-    fun setHt(hint: String) {
-        binding.inputLayout.hint = hint
-        if (hint == context.getString(R.string.pw))
+        if (binding.inputLayout.hint == context.getString(R.string.pw))
             binding.tvInput.inputType =
                 InputType.TYPE_CLASS_TEXT or InputType.TYPE_TEXT_VARIATION_PASSWORD
     }
 
-    fun setHtColor(color: Int) {
-        binding.tvInput.setHintTextColor(ContextCompat.getColor(binding.root.context, color))
+    fun getEt(): String {
+        return binding.tvInput.text.toString()
     }
 
     fun setTxtColor(color: Int) {

@@ -3,9 +3,11 @@
     <attr name="setTxt" format="string" />
     <attr name="setEmoji" format="string" />
     <attr name="setEndTxt" format="string" />
+    <attr name="setHint" format="string" />
 
     <declare-styleable name="InputTxt">
         <attr name="android:inputType" />
+        <attr name="setHint" />
     </declare-styleable>
 
     <declare-styleable name="AppBarCenter">
@@ -13,7 +15,7 @@
     </declare-styleable>
 
     <declare-styleable name="AppBarEndTxt">
-        <attr name="setTxt"/>
+        <attr name="setTxt" />
     </declare-styleable>
 
     <declare-styleable name="TabItem">
@@ -38,6 +40,6 @@
 
     <declare-styleable name="LineEndTxt">
         <attr name="setTxt" />
-        <attr name="setEndTxt"/>
+        <attr name="setEndTxt" />
     </declare-styleable>
 </resources>

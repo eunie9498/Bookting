@@ -16,9 +16,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>(R.layout.activity_login
         binding.appBar.binding.btnBack.setOnClickListener {
             onBackPressed()
         }
-
-        this@LoginActivity.setFullScreen()
-
     }
 
     fun login() {
