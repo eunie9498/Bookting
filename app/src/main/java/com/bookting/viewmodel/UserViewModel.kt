@@ -12,17 +12,42 @@ import io.reactivex.rxjava3.schedulers.Schedulers
 
 class UserViewModel(val repository: MainRepository) : ViewModel() {
 
-    val joinResponse = MutableLiveData<ResultResponse>()
+    val joinResponse: MutableLiveData<ResultResponse>
+        get() = _joinResponse
     private val _joinResponse = MutableLiveData<ResultResponse>()
 
     val loginResponse = MutableLiveData<LoginResponse>()
-
 
     val userDataResponse: LiveData<UserDataResponse>
         get() = _userDataResponse
     private val _userDataResponse = MutableLiveData<UserDataResponse>()
 
     val BooktingHeader = mutableMapOf<String, String>()
+
+    val alreadyDataResponse: MutableLiveData<GetAlreadyBookResponse>
+        get() = _alreadyDataResponse
+
+    private val _alreadyDataResponse = MutableLiveData<GetAlreadyBookResponse>()
+
+    fun GetAlreadyRead(page: Int, size: Int) {
+        BooktingHeader["access_token"] = "Bearer " + repository.sharedHelper.getAccessToken
+        repository.run {
+            GetAlreadyRead(BooktingHeader.toMap(), page, size)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({
+                    alreadyDataResponse.postValue(it)
+                }, {
+                    alreadyDataResponse.postValue(
+                        GetAlreadyBookResponse(
+                            MainConstants.FAIL,
+                            it.message ?: "",
+                            null
+                        )
+                    )
+                })
+        }
+    }
 
     fun getUserData() {
         BooktingHeader["access_token"] = "Bearer " + repository.sharedHelper.getAccessToken
