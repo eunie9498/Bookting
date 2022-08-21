@@ -13,23 +13,26 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <com.airbnb.lottie.LottieAnimationView
             android:id="@+id/lottieImg"
+            android:scaleType="fitXY"
+            app:lottie_rawRes="@raw/book"
+            app:lottie_autoPlay="true"
             android:layout_width="150dp"
             android:layout_height="150dp"
-            android:layout_marginTop="200dp"
-            app:lottie_loop="true"
-            app:lottie_autoPlay="true"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/btnContainer"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="56dp"
+            android:layout_alignParentBottom="true"
             android:orientation="horizontal"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

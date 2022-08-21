@@ -49,7 +49,6 @@ class SplashActivity: BaseActivity<ActivitySplashBinding>(R.layout.activity_spla
             }
         }else{
             val i = Intent(this@SplashActivity, StartActivity::class.java)
-            i.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY)
             startActivity(i)
         }
     }

@@ -35,8 +35,7 @@
 
         <activity
             android:name=".view.start.LoginActivity"
-            android:exported="false"
-            android:noHistory="true" />
+            android:exported="false"/>
 
         <activity
             android:name=".view.main.home.HomeActivity"
