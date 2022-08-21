@@ -210,12 +210,13 @@ data class AlreadyBookItem(
 data class GetAlreadyBookResponse(
     var result: String?,
     var reason: String?,
-    var data: List<GetAlreadyBookItem>
+    var data: List<GetAlreadyBookItem>? = ArrayList()
 ) : Parcelable
 
 @Parcelize
 data class GetAlreadyBookItem(
     var book_name: String,
+    var book_id: Int,
     var id: Int
 ) : Parcelable
 
@@ -239,7 +240,7 @@ data class UserData(
 data class UserDataResponse(
     var result: String,
     var reason: String? = "",
-    var data: UserData?=null
+    var data: UserData? = null
 ) : Parcelable
 
 @Parcelize

@@ -24,6 +24,9 @@ object MainConstants {
     val YEAR = "년"
     val MONTH = "월"
 
+    val LIMIT_SIZE = 10
+    val LIMIT_GRID_SIZE = 9
+
     object Shared {
         val ACCESS_TOKEN = "access_token"
         val REFRESH_TOKEN = "refresh_token"

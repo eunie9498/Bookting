@@ -66,6 +66,7 @@ interface BookAPI {
 
     @GET("book-memories/complete")
     fun GetAlreadyRead(
+        @HeaderMap header: Map<String, String>,
         @Query("page") page: Int,
         @Query("size") size: Int
     ): Observable<GetAlreadyBookResponse>
@@ -91,7 +92,7 @@ interface BookAPI {
     @GET("bookshelf")
     fun getBookShelf(
         @HeaderMap header: Map<String, String>,
-        @Query("month") month:String,
+        @Query("month") month: String,
         @Query("page") page: Int
     ): Observable<ShelfResponse>
 
