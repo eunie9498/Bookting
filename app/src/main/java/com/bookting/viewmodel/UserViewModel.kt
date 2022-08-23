@@ -29,10 +29,10 @@ class UserViewModel(val repository: MainRepository) : ViewModel() {
 
     private val _alreadyDataResponse = MutableLiveData<GetAlreadyBookResponse>()
 
-    fun GetAlreadyRead(page: Int, size: Int) {
+    fun GetAlreadyRead(month:String, page: Int, size: Int) {
         BooktingHeader["access_token"] = "Bearer " + repository.sharedHelper.getAccessToken
         repository.run {
-            GetAlreadyRead(BooktingHeader.toMap(), page, size)
+            GetAlreadyRead(BooktingHeader.toMap(), month, page, size)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
