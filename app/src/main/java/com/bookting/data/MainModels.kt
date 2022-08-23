@@ -217,6 +217,7 @@ data class GetAlreadyBookResponse(
 data class GetAlreadyBookItem(
     var book_name: String,
     var book_id: Int,
+    var image_url: String? = "",
     var id: Int
 ) : Parcelable
 

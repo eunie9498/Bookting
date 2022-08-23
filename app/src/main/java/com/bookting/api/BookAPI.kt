@@ -67,6 +67,7 @@ interface BookAPI {
     @GET("book-memories/complete")
     fun GetAlreadyRead(
         @HeaderMap header: Map<String, String>,
+        @Query("month") month: String,
         @Query("page") page: Int,
         @Query("size") size: Int
     ): Observable<GetAlreadyBookResponse>

@@ -43,6 +43,10 @@ class DetailAlreadyActivity :
             }
         }
 
+        appBar.binding.btnBack.setOnClickListener {
+            onBackPressed()
+        }
+
         initView()
     }
 
@@ -86,6 +90,7 @@ class DetailAlreadyActivity :
                     val grid = GridBook(root.context)
                     grid.apply {
                         setTitle(it.book_name)
+                        setBooksImg(it.image_url ?: "")
                     }
                     gridArr.add(grid)
                 }
@@ -103,7 +108,6 @@ class DetailAlreadyActivity :
         userViewModel.GetAlreadyRead(page, MainConstants.LIMIT_GRID_SIZE)
         userViewModel.alreadyDataResponse.observe(this@DetailAlreadyActivity) {
             if (it.result == MainConstants.SUCCESS) {
-                Log.d("체크체크체크체크", Gson().toJson(userViewModel.alreadyDataResponse.value!!.data))
                 drawGrid(userViewModel.alreadyDataResponse.value!!.data!!)
             }
         }
