@@ -15,6 +15,7 @@ import com.bookting.data.MainConstants
 import com.bookting.databinding.ActivityDetailAlreadyBinding
 import com.bookting.databinding.AlreadyListHolderBinding
 import com.bookting.ui.GridBook
+import com.bookting.utils.getCurrentTime
 import com.bookting.utils.getCurrentTimeBefore
 import com.google.gson.Gson
 
@@ -22,6 +23,7 @@ class DetailAlreadyActivity :
     BaseActivity<ActivityDetailAlreadyBinding>(R.layout.activity_detail_already) {
 
     var page = 0
+    var month = ""
 
     override fun ActivityDetailAlreadyBinding.onCreate() {
         val arr = getCurrentTimeBefore(6)
@@ -36,6 +38,10 @@ class DetailAlreadyActivity :
                 id: Long
             ) {
                 //todo : viewpager 변경
+                val date =
+                    arr[position].replace(MainConstants.YEAR, "").replace(MainConstants.MONTH, "")
+                        .replace(" ", "")
+                month = date
             }
 
             override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -47,6 +53,7 @@ class DetailAlreadyActivity :
             onBackPressed()
         }
 
+        month = getCurrentTime().substring(0, 6)
         initView()
     }
 
@@ -105,7 +112,7 @@ class DetailAlreadyActivity :
 
 
     fun initView() {
-        userViewModel.GetAlreadyRead(page, MainConstants.LIMIT_GRID_SIZE)
+        userViewModel.GetAlreadyRead(month, page, MainConstants.LIMIT_GRID_SIZE)
         userViewModel.alreadyDataResponse.observe(this@DetailAlreadyActivity) {
             if (it.result == MainConstants.SUCCESS) {
                 drawGrid(userViewModel.alreadyDataResponse.value!!.data!!)
@@ -115,7 +122,7 @@ class DetailAlreadyActivity :
     }
 
     fun addScrollItem(page: Int) {
-        userViewModel.GetAlreadyRead(page, MainConstants.LIMIT_GRID_SIZE)
+        userViewModel.GetAlreadyRead(month, page, MainConstants.LIMIT_GRID_SIZE)
     }
 
     val viewPagerScroll = object : ViewPager2.OnPageChangeCallback() {
