@@ -6,6 +6,7 @@
         android:id="@+id/flexLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:columnCount="3"
-        android:rowCount="3" />
+        android:columnCount="4"
+        android:rowCount="3"
+        app:flexWrap="wrap" />
 </layout>
