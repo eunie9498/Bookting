@@ -151,11 +151,11 @@ class MainViewModel(val repository: MainRepository) : ViewModel() {
         }
     }
 
-    fun getShelfByUser(month: String, page: Int? = 0) {
+    fun getShelfByUser(month: String, page: Int? = 0, size: Int? = 12) {
         BooktingHeader["access_token"] = "Bearer " + repository.sharedHelper.getAccessToken
 
         repository.run {
-            getShelf(BooktingHeader.toMap(), month, page ?: 0)
+            getShelf(BooktingHeader.toMap(), month, page ?: 0, size ?: 12)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(

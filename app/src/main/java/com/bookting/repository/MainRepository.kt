@@ -56,8 +56,8 @@ class MainRepository(context: Context) {
 
     fun getUserData(header: Map<String, String>) = api.getUserData(header)
 
-    fun getShelf(header: Map<String, String>, month: String, page: Int) =
-        api.getBookShelf(header, month, page)
+    fun getShelf(header: Map<String, String>, month: String, page: Int, size: Int) =
+        api.getBookShelf(header, month, page, size)
 
     fun GetAlreadyRead(header: Map<String, String>, month: String, page: Int, size: Int) =
         api.GetAlreadyRead(header, month, page, size)

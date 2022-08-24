@@ -94,7 +94,8 @@ interface BookAPI {
     fun getBookShelf(
         @HeaderMap header: Map<String, String>,
         @Query("month") month: String,
-        @Query("page") page: Int
+        @Query("page") page: Int,
+        @Query("size") size: Int
     ): Observable<ShelfResponse>
 
     /**
