@@ -29,7 +29,7 @@
 
         <TextView
             android:id="@+id/tvCount"
-            style="@style/Normal20"
+            style="@style/Normal18"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -41,7 +41,7 @@
             android:id="@+id/viewPager"
             android:layout_width="match_parent"
             android:layout_height="400dp"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="30dp"
             android:overScrollMode="never"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

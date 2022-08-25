@@ -25,7 +25,7 @@ object MainConstants {
     val MONTH = "월"
 
     val LIMIT_SIZE = 10
-    val LIMIT_GRID_SIZE = 9
+    val LIMIT_GRID_SIZE = 12
 
     object Shared {
         val ACCESS_TOKEN = "access_token"
