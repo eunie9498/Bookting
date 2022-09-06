@@ -66,6 +66,11 @@
         <item name="android:textColor">@color/grey900</item>
     </style>
 
+    <style name="Normal10">
+        <item name="android:textSize">10dp</item>
+        <item name="android:textColor">@color/grey900</item>
+    </style>
+
     <style name="ButtonRadius10">
         <item name="android:textSize">13dp</item>
         <item name="android:layout_width">match_parent</item>

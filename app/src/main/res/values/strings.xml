@@ -2,10 +2,13 @@
     <string name="app_name">Bookting</string>
 
     <string name="id">아이디</string>
+    <string name="id_join">4~8자리 숫자, 영문 대,소문자로 구성해주세요</string>
     <string name="pw">비밀번호</string>
+    <string name="pw_join">8~16자리 숫자, 영문 대,소문자를 포함해주세요</string>
     <string name="login">로그인</string>
     <string name="join">회원가입</string>
     <string name="nickname">닉네임</string>
+    <string name="nickname_duplicate">이미 가입된 닉네임입니다</string>
     <string name="woman">여</string>
     <string name="man">남</string>
     <string name="ok">확인</string>
