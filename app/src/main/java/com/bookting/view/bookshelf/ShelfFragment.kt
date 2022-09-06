@@ -1,5 +1,6 @@
 package com.bookting.view.bookshelf
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,20 +18,33 @@ import com.bookting.databinding.ShelfPagerItemBinding
 import com.bookting.ui.GridBook
 import com.bookting.utils.getCurrentTime
 import com.bookting.utils.getCurrentTimeBefore
+import com.bookting.utils.showToast
+import com.google.gson.Gson
 import io.reactivex.rxjava3.core.Observable
+import kotlinx.coroutines.CoroutineScope
 import java.util.concurrent.TimeUnit
+import kotlin.coroutines.CoroutineContext
+import kotlin.coroutines.coroutineContext
 
 class ShelfFragment : BaseFragment<ShelfFragmentBinding>(R.layout.shelf_fragment) {
 
-    override fun ShelfFragmentBinding.initView() {
+    var page = 0
+    var shelfDatas = ArrayList<SHELF.UserShelfData>()
 
+    override fun ShelfFragmentBinding.initView() {
+        shelfDatas.clear()
         init()
-        getShelf(getCurrentTime().substring(0, 6))
+        viewModel.getShelfByUser(
+            getCurrentTime().substring(0, 6),
+            page,
+            MainConstants.LIMIT_GRID_SIZE
+        )
+        Log.d("체크체크체크체크", sharedHelper.getAccessToken)
     }
 
     private fun getShelf(date: String) {
-        viewModel.getShelfByUser(date)
         viewModel.shelfResponse.observe(this@ShelfFragment) {
+            showToast(requireContext(), page.toString())
             if (it.result == MainConstants.SUCCESS) {
                 binding.tvEmpty.isVisible = it.data?.size == 0 || it.data == null
 
@@ -42,20 +56,38 @@ class ShelfFragment : BaseFragment<ShelfFragmentBinding>(R.layout.shelf_fragment
                         binding.tvTitle.text =
                             getString(R.string.shelf_title_by_user, sharedHelper.getUserNick)
                         binding.tvCount.text = getString(R.string.shelf_count, it.total_count)
-                        drawGrid(data)
+                        data.forEach { shelf ->
+                            shelfDatas.add(shelf)
+                        }
+
+                        if (it.has_next)
+                            moreShelf(date)
+                        else
+                            drawGrid(shelfDatas)
                     }
                 }
             }
         }
     }
 
+    private fun moreShelf(date: String) {
+        viewModel.getShelfByUser(date, ++page, MainConstants.LIMIT_GRID_SIZE)
+    }
+
     private fun drawGrid(arr: List<SHELF.UserShelfData>) = with(binding) {
         val adapter = ViewPagerAdapter()
         adapter.addItems(arr)
+
         viewPager.adapter = adapter
         (viewPager.getChildAt(0) as RecyclerView).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
-
         dotsIndicator.attachTo(viewPager)
+    }
+
+    fun drawMoreGrid(arr: List<SHELF.UserShelfData>) = with(binding) {
+        arr.forEach {
+            shelfDatas.add(it)
+        }
+        (viewPager.adapter as ViewPagerAdapter).addMoreItems(shelfDatas)
     }
 
     private fun init() = with(binding) {
@@ -66,6 +98,7 @@ class ShelfFragment : BaseFragment<ShelfFragmentBinding>(R.layout.shelf_fragment
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View?, pos: Int, id: Long) {
+                page = 0
                 val date = arr[pos].replace(MainConstants.YEAR, "").replace(MainConstants.MONTH, "")
                     .replace(" ", "")
                 getShelf(date)
@@ -85,12 +118,17 @@ class ShelfFragment : BaseFragment<ShelfFragmentBinding>(R.layout.shelf_fragment
             notifyDataSetChanged()
         }
 
+        fun addMoreItems(arr: List<SHELF.UserShelfData>) {
+            items.addAll(arr)
+            notifyDataSetChanged()
+        }
+
         override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
             holder as PagerHolder
             holder.bind(items)
         }
 
-        override fun getItemCount() = 1
+        override fun getItemCount() = page
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
             val binding =
@@ -101,7 +139,9 @@ class ShelfFragment : BaseFragment<ShelfFragmentBinding>(R.layout.shelf_fragment
         inner class PagerHolder(val binding: ShelfPagerItemBinding) :
             RecyclerView.ViewHolder(binding.root) {
             fun bind(item: List<SHELF.UserShelfData>) = with(binding) {
+
                 val gridArr = ArrayList<GridBook>()
+
                 item.forEach {
                     val grid = GridBook(root.context)
                     grid.apply {
@@ -111,11 +151,11 @@ class ShelfFragment : BaseFragment<ShelfFragmentBinding>(R.layout.shelf_fragment
                     }
                     gridArr.add(grid)
                 }
+
                 gridArr.forEach {
                     flexLayout.addView(it)
                 }
             }
         }
-
     }
 }
