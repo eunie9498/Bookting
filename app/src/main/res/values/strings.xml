@@ -83,6 +83,10 @@
     <string name="shelf_count">총 %1$d권을 기록했어요 &#9997;</string>
     <string name="shelf_empty">&#128580; 책장이 비어있어요\n</string>
 
+    <!--검색-->
+    <string name="search_hint">검색어를 입력하세요</string>
+
+
     <!--setting-->
     <string name="setting_book">&#128218; 도서 관리</string>
     <string name="already_book">이미 읽은 책</string>
